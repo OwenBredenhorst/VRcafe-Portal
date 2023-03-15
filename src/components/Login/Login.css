@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f2f2;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+}
+
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    font-size: 18px;
+    background-color: #f9f9f9;
+}
+
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+    outline: none;
+    border: 1px solid #999;
+}
+
+.login-form button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+}
+
+.login-form button:hover {
+    background-color: #3e8e41;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #333;
+    text-align: center;
+    text-shadow: 1px 1px #fff;
+    letter-spacing: 1px;
+}
+
+.form-heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 1px 1px #fff;
+    letter-spacing: 1px;
+}
+
+.form-divider {
+    display: flex;
+    align-items: center;
+    color: #999;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.form-divider::before,
+.form-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #999;
+}
+
+.form-divider span {
+    padding: 0 10px;
+}
