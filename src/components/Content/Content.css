@@ -6,7 +6,7 @@
 }
 
 .grid-item {
-    background-color: #fff;
+    background-color: #2a272d;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     overflow: hidden;
@@ -21,7 +21,7 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color: #f2f2f2;
+    background-color: #343138;
 }
 
 .item-header i {
@@ -33,7 +33,7 @@
     margin: 0;
     font-size: 18px;
     font-weight: 500;
-    color: #333;
+    color: #ffffff;
 }
 
 .item-preview img,

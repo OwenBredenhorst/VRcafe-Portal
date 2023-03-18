@@ -1,6 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import {Link} from 'react-router-dom';
+import {sessionClear} from "../../functions/CheckSession";
 
 function Navbar() {
     return (
@@ -22,10 +23,7 @@ function Navbar() {
                     <Link to="/Content">
                         <li className="navbar-item">Files</li>
                     </Link>
-                    <Link to="/login">
-                    <li className="navbar-item">Logout</li>
-                    </Link>
-
+                    <li onClick={sessionClear} className="navbar-item">Logout</li>
                 </ul>
             </div>
         </nav>

@@ -1,16 +1,13 @@
 import React from 'react';
 import './Content.css';
-import {Link} from 'react-router-dom';
+import '../../Styling/Globalstyling.css';
 import Navbar from '../../containers/Navbar/Navbar';
 import Filter from '../../containers/Filter/Filter';
-import Footer from '../../containers/Footer/Footer';
 import { Document, Page, pdfjs } from 'react-pdf';
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faVideo } from '@fortawesome/free-solid-svg-icons';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -114,7 +111,7 @@ const Content = () => {
                 <Grid items={items} />
             </div>
 
-            <Footer />
+            {/*<Footer />*/}
         </div>
     );
 };

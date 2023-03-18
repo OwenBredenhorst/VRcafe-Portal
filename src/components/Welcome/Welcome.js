@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './Welcome.css';
+import '../../Styling/Globalstyling.css';
 import {Link} from 'react-router-dom';
 import Navbar from '../../containers/Navbar/Navbar';
-import Footer from '../../containers/Footer/Footer';
+import {checkSession} from "../../functions/CheckSession";
 
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 const cardsData = [
@@ -36,6 +36,7 @@ const cardsData = [
     // add more cards here
 ];
 
+
 const Card = ({ id, title, image, link }) => {
     return (
         <div className="four-cards-card">
@@ -48,6 +49,11 @@ const Card = ({ id, title, image, link }) => {
 };
 
 const Welcome = () => {
+
+    useEffect(() => {
+        checkSession();
+    }, []);
+
     return (
         <div>
             <Navbar />
@@ -58,7 +64,7 @@ const Welcome = () => {
                 ))}
             </div>
 
-            <Footer />
+            {/*<Footer />*/}
         </div>
     );
 };
