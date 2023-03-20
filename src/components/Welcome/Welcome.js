@@ -1,12 +1,13 @@
-import React, {useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './Welcome.css';
 import '../../Styling/Globalstyling.css';
 import {Link} from 'react-router-dom';
 import Navbar from '../../containers/Navbar/Navbar';
-import {checkSession} from "../../functions/CheckSession";
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import checkSession from "../../functions/CheckSession";
+
 const cardsData = [
     {
         id: 1,
@@ -36,7 +37,6 @@ const cardsData = [
     // add more cards here
 ];
 
-
 const Card = ({ id, title, image, link }) => {
     return (
         <div className="four-cards-card">
@@ -46,20 +46,31 @@ const Card = ({ id, title, image, link }) => {
             </Link>
         </div>
     );
-};
+}
+
+
 
 const Welcome = () => {
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        checkSession();
+        const authenticated = checkSession();
+        setIsLoading(false);
+        if (!authenticated) {
+            window.location.href = "/login";
+        }
     }, []);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div>
             <Navbar />
 
             <div className="four-cards-container">
-                {cardsData.map(card => (
+                {cardsData.map((card) => (
                     <Card key={card.id} {...card} />
                 ))}
             </div>
@@ -68,5 +79,7 @@ const Welcome = () => {
         </div>
     );
 };
+
+
 
 export default Welcome;

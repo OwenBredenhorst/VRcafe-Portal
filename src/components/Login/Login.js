@@ -3,11 +3,35 @@ import {Link} from 'react-router-dom';
 import './Login.css';
 import '../../Styling/Globalstyling.css';
 import {getLoginInfo} from "../../services/UserService.tsx";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+
+    const handleLogins = (event) => {
+        if (email && password) {
+        event.preventDefault();
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                sessionStorage.setItem('userInfo', JSON.stringify(user));
+                window.location.href = "/welcome";
+
+            })
+            .catch((error) => {
+                setError("Invalid email or password. Please try again.");
+            });
+            }else {
+            setError("Please enter email and password.");
+        }
+
+    };
+
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -47,6 +71,7 @@ const Login = () => {
             
 
                 <div className="login-form">
+
                     <div className="logo-container">
                         <img
                             src="https://i0.wp.com/www.vrcafehaarlem.nl/wp-content/uploads/2021/02/VRcafe-logo-gifje-1.gif?fit=986%2C555&ssl=1"
@@ -54,6 +79,7 @@ const Login = () => {
                             className="logo"
                         />
                     </div>
+
                     <div className="input-container">
                         <input
                             id="email-input"
@@ -78,7 +104,7 @@ const Login = () => {
 
                     <div className="button-container">
 
-                        <button className="button" onClick={handleLogin}>
+                        <button className="button" onClick={handleLogins}>
                             Login Werknemer
                         </button>
                     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import {Link} from 'react-router-dom';
-import {sessionClear} from "../../functions/CheckSession";
+import sessionClear from "../../functions/ClearSession";
 
 function Navbar() {
     return (
