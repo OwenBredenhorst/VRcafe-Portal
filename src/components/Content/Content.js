@@ -3,40 +3,47 @@ import './Content.css';
 import '../../Styling/Globalstyling.css';
 import Navbar from '../../containers/Navbar/Navbar';
 import Filter from '../../containers/Filter/Filter';
-import {Document, Page, pdfjs} from 'react-pdf';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {getStorage, ref, listAll, getDownloadURL} from "firebase/storage";
-
 
 let test = true
 let items = [];
 
 
+const GridItem = ({ item }) => {
+    const isImage = item.type === 'image';
+    const isVideo = item.type === 'video';
+    const isDocument = item.type === 'document';
 
-const GridItem = ({item}) => (
-
-    <div className="grid-item">
-        <div className="item-header">
-            {/*<FontAwesomeIcon icon={[items.icon]}/>*/}
-            <h3>{item.title}</h3>
+    return (
+        <div className="grid-item">
+            <div className="item-header">
+                <h3>{item.title}</h3>
+            </div>
+            <div className="item-preview">
+                {isImage && (
+                    <a href={item.preview} target="_blank" rel="noopener noreferrer">
+                        <img src={item.preview} alt={item.title} />
+                    </a>
+                )}
+                {isVideo && (
+                    <video controls>
+                        <source src={item.preview} type="video/mp4" />
+                    </video>
+                )}
+                {isDocument && (
+                    <a href={item.preview} target="_blank" rel="noopener noreferrer">
+                        <img
+                            src="https://cdn2.iconfinder.com/data/icons/adobe-acrobat-pdf/512/download-pdf-file-folder-storage-512.png"
+                            alt={item.title}
+                        />
+                    </a>
+                )}
+            </div>
         </div>
-        <div className="item-preview">
-            {item.type === 'image' && <a href={item.preview} target="_blank" rel="noopener noreferrer" ><img src={item.preview} alt={item.preview}/></a>}
-            {item.type === 'video' && (
-                <video controls>
-                    <source src={item.preview} type="video/mp4"/>
-                </video>
-            )}
-            {item.type === 'document' && (
-                <img
-                    src="https://cdn2.iconfinder.com/data/icons/adobe-acrobat-pdf/512/download-pdf-file-folder-storage-512.png"
-                    alt={item.title}/>
-            )}
-        </div>
-    </div>
-);
+    );
+};
 
 
 const Grid = ({items}) => (

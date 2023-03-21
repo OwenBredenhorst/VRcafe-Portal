@@ -4,6 +4,7 @@ import Navbar from '../../containers/Navbar/Navbar';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import checkSession from "../../functions/CheckSession";
+import './Upload.css';
 
 
 
@@ -26,8 +27,12 @@ const Upload = () => {
         <div>
             <Navbar />
 
-            <div className="four-cards-container">
-
+            <div className="container">
+                <form action="#" method="post" encType="multipart/form-data">
+                    <label htmlFor="file-upload"><span>Choose file</span></label>
+                    <input type="file" id="file-upload" name="file-upload" />
+                        <button type="submit">Upload</button >
+                </form>
             </div>
 
             {/*<Footer />*/}
