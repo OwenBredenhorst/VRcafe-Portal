@@ -3,8 +3,9 @@ import {Link} from 'react-router-dom';
 import './Login.css';
 import '../../Styling/Globalstyling.css';
 import {getLoginInfo} from "../../services/UserService.tsx";
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
+
+import { getAuth, signInWithEmailAndPassword  } from "firebase/auth";
+
 
 
 const Login = () => {
@@ -14,23 +15,26 @@ const Login = () => {
 
     const handleLogins = (event) => {
         if (email && password) {
-        event.preventDefault();
-
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth,email, password)
             .then((userCredential) => {
+                // Signed in
                 const user = userCredential.user;
+
                 sessionStorage.setItem('userInfo', JSON.stringify(user));
                 window.location.href = "/welcome";
 
             })
             .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
                 setError("Invalid email or password. Please try again.");
             });
-            }else {
+        } else {
             setError("Please enter email and password.");
         }
-
     };
+
 
 
     const handleEmailChange = (event) => {
