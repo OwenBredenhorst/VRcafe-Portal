@@ -10,7 +10,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {getStorage, ref, listAll, getDownloadURL} from "firebase/storage";
 
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 let test = true
 let items = [];
 
@@ -24,7 +23,7 @@ const GridItem = ({item}) => (
             <h3>{item.title}</h3>
         </div>
         <div className="item-preview">
-            {item.type === 'image' && <img src={item.preview} alt={item.preview}/>}
+            {item.type === 'image' && <a href={item.preview} target="_blank" rel="noopener noreferrer" ><img src={item.preview} alt={item.preview}/></a>}
             {item.type === 'video' && (
                 <video controls>
                     <source src={item.preview} type="video/mp4"/>
@@ -66,7 +65,7 @@ const Content = () => {
                             type: 'image',
                             title: itemRef.name,
                             preview: url,
-                            icon: 'fa fa-camera'
+                            icon: 'p'
                         };
                         return newItem;
                     });
