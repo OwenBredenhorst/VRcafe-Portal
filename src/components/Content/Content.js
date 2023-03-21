@@ -19,7 +19,7 @@ const GridItem = ({item}) => (
 
     <div className="grid-item">
         <div className="item-header">
-            <FontAwesomeIcon icon={[items.icon]}/>
+            {/*<FontAwesomeIcon icon={[items.icon]}/>*/}
             <h3>{item.title}</h3>
         </div>
         <div className="item-preview">
