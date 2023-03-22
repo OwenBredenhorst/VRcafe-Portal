@@ -72,17 +72,14 @@ const Login = () => {
 
     return (
         <div className="login-container">
-            
-
-                <div className="login-form">
-
-                    <div className="logo-container">
-                        <img
-                            src="https://i0.wp.com/www.vrcafehaarlem.nl/wp-content/uploads/2021/02/VRcafe-logo-gifje-1.gif?fit=986%2C555&ssl=1"
-                            alt="Logo"
-                            className="logo"
-                        />
-                    </div>
+            <div className="login-form">
+                <div className="logo-container">
+                    <img
+                        src="https://i0.wp.com/www.vrcafehaarlem.nl/wp-content/uploads/2021/02/VRcafe-logo-gifje-1.gif?fit=986%2C555&ssl=1"
+                        alt="Logo"
+                        className="logo"
+                    />
+                </div>
 
                     <div className="input-container">
                         <input
@@ -92,6 +89,12 @@ const Login = () => {
                             className="input"
                             value={email}
                             onChange={handleEmailChange}
+                            onKeyDown={(event) => {
+                                if (event.key === "Enter") {
+                                    event.preventDefault(); // Prevent form submission
+                                    handleLogins(); // Call the login function
+                                }
+                            }}
                         />
                     </div>
                     <div className="input-container">
@@ -102,24 +105,41 @@ const Login = () => {
                             className="input"
                             value={password}
                             onChange={handlePasswordChange}
+                            onKeyDown={(event) => {
+                                if (event.key === "Enter") {
+                                    event.preventDefault(); // Prevent form submission
+                                    handleLogins(); // Call the login function
+                                }
+                            }}
                         />
                     </div>
-                    {error && <p style={{color: 'red', textAlign: 'center', marginBottom: '10px'}}>{error}</p>}
-
+                    {error && (
+                        <p
+                            style={{
+                                color: "red",
+                                textAlign: "center",
+                                marginBottom: "10px",
+                            }}
+                        >
+                            {error}
+                        </p>
+                    )}
                     <div className="button-container">
-
-                        <button className="button" onClick={handleLogins}>
+                        <button type="submit" className="button">
                             Login Werknemer
                         </button>
                     </div>
+                <div className="button-container">
                     <Link to="/welcomeBedrijf">
-                        <div className="text-container">
-                            <p className="text">Bedrijf Login</p>
-                        </div>
+                    <button className="button">
+                        Login Werknemer
+                    </button>
                     </Link>
-                </div>
 
+                </div>
+            </div>
         </div>
+
     );
 };
 
