@@ -59,15 +59,18 @@ const Content = () => {
 
     useEffect(() => {
         const storage = getStorage();
-        const listRef = ref(storage);
+        const listRefImages = ref(storage, "images");
+        const listRefVideo = ref(storage, "video");
+        const listRefDocument= ref(storage, "document");
 
-
-
-        listAll(listRef)
-            .then(res => {
-                const promises = res.items.map(itemRef => {
+        Promise.all([
+            listAll(listRefImages),
+            listAll(listRefVideo),
+            listAll(listRefDocument)
+        ])
+            .then(([resImages, resVideo, resDocument]) => {
+                const promisesImages = resImages.items.map(itemRef => {
                     return getDownloadURL(itemRef).then(url => {
-
                         const newItem = {
                             id: itemRef.name,
                             type: 'image',
@@ -79,22 +82,43 @@ const Content = () => {
                     });
                 });
 
-                Promise.all(promises).then(newItems => {
-                    if (items.length < res.items.length) {
-                        setItems(items => [...items, ...newItems.slice(0, res.items.length - items.length)]);
-                    }
+                const promisesVideo = resVideo.items.map(itemRef => {
+                    return getDownloadURL(itemRef).then(url => {
+                        const newItem = {
+                            id: itemRef.name,
+                            type: 'video',
+                            title: itemRef.name,
+                            preview: url,
+                            icon: 'v'
+                        };
+                        return newItem;
+                    });
+                });
+
+                const promisesDocument = resDocument.items.map(itemRef => {
+                    return getDownloadURL(itemRef).then(url => {
+                        const newItem = {
+                            id: itemRef.name,
+                            type: 'document',
+                            title: itemRef.name,
+                            preview: url,
+                            icon: 'd'
+                        };
+                        return newItem;
+                    });
+                });
+
+                Promise.all([...promisesImages, ...promisesVideo, ...promisesDocument]).then(newItems => {
+                    setItems(newItems);
+                    setIsLoading(false);
                 });
             })
             .catch(error => {
                 console.error(error);
             });
 
-        test = false
-
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
     }, []);
+
 
 
 
