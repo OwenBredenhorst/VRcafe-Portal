@@ -1,23 +1,74 @@
-.containerUpload {
-    background-color: #fff;
-    padding: 20px;
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
 }
 
-.labelUpload {
-    display: inline-block;
-    padding: 12px 20px;
-    font-size: 16px;
+.upload-container h1 {
+    font-size: 36px;
     font-weight: bold;
-    color: #666;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 5px;
+    padding: 20px;
+    width: 400px;
+    max-width: 100%;
+}
+
+.upload-form input[type="file"] {
     margin-bottom: 10px;
 }
-input[type=file] {
-    margin: 10px 0;
-    padding: 12px 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+
+.upload-form input[type="file"]::-webkit-file-upload-button {
+    background-color: #713200;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
+}
+
+.upload-form input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #552b00;
+}
+
+.upload-form input[type="file"]::-webkit-file-upload-button:active {
+    background-color: #8b4200;
+}
+
+.upload-form input[type="file"]::-webkit-file-upload-button:focus {
+    outline: none;
+}
+
+
+.upload-form button:hover {
+    background-color: #552b00;
+}
+
+.upload-form button:active {
+    background-color: #8b4200;
+}
+
+.upload-form button:focus {
+    outline: none;
+}
+
+#myPopup {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
 }
