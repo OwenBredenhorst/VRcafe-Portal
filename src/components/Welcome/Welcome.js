@@ -37,6 +37,7 @@ const cardsData = [
     // add more cards here
 ];
 
+
 const Card = ({ id, title, image, link }) => {
     return (
         <div className="four-cards-card">
@@ -51,33 +52,32 @@ const Card = ({ id, title, image, link }) => {
 
 
 const Welcome = () => {
-    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
         const authenticated = checkSession();
-        setIsLoading(false);
         if (!authenticated) {
             window.location.href = "/login";
         }
     }, []);
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+
 
     return (
         <div>
             <Navbar />
 
-            <div className="four-cards-container">
-                {cardsData.map((card) => (
-                    <Card key={card.id} {...card} />
-                ))}
-            </div>
+
+                <div className="four-cards-container">
+                    {cardsData.map((card) => (
+                        <Card key={card.id} {...card} />
+                    ))}
+                </div>
 
             {/*<Footer />*/}
         </div>
     );
+
 };
 
 

@@ -55,6 +55,7 @@ const Grid = ({items}) => (
 );
 const Content = () => {
     const [items, setItems] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const storage = getStorage();
@@ -89,6 +90,10 @@ const Content = () => {
             });
 
         test = false
+
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
     }, []);
 
 
@@ -97,11 +102,21 @@ const Content = () => {
         <div>
             <Navbar/>
             <Filter/>
-
+            {isLoading ? (
+                <div className="loading-animation">
+                    <div className="loadingio-spinner-dual-ball-3v8tqe2smu4">
+                        <div className="ldio-lips0vs5tu">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            ) : (
             <div className="App">
                 <Grid items={items}/>
             </div>
-
+            )}
             {/*<Footer />*/}
         </div>
     );

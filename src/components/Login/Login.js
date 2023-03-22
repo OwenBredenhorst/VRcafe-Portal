@@ -125,18 +125,19 @@ const Login = () => {
                         </p>
                     )}
                     <div className="button-container">
-                        <button type="submit" className="button">
+                        <button type="submit" onClick={handleLogins} className="button">
                             Login Werknemer
                         </button>
                     </div>
-                <div className="button-container">
-                    <Link to="/welcomeBedrijf">
-                    <button className="button">
-                        Login Werknemer
-                    </button>
-                    </Link>
 
-                </div>
+
+
+
+                    <Link to="/welcomeBedrijf">
+                    <p className={"login-p"}>
+                        Login Werknemer
+                    </p>
+                    </Link>
             </div>
         </div>
 

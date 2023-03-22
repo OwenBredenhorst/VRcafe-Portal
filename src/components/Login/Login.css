@@ -40,23 +40,96 @@
 
 .button-container {
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
-.button {
+.login-p{
+    color: white;
+    text-decoration: none;
+    text-underline: none;
+    font-size: 14px;
+}
+
+button {
     width: 180px;
     height: 50px;
     background-color: #78eeaf;
     color: black;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    transform: skew(-20deg) !important;
+
+}
+
+button:hover{
+
+    background-color: #FD3E81;
+    transition: background-color 0.5s;
 }
 
 .text-container {
     margin-bottom: 0;
 }
 
-.text {
-    color: #f5f3f3;
-    font-size: 12px;
+
+
+
+@keyframes ldio-lips0vs5tu-o {
+    0%    { opacity: 1; transform: translate(0 0) }
+    49.99% { opacity: 1; transform: translate(73.2px,0) }
+    50%    { opacity: 0; transform: translate(73.2px,0) }
+    100%    { opacity: 0; transform: translate(0,0) }
+}
+@keyframes ldio-lips0vs5tu {
+    0% { transform: translate(0,0) }
+    50% { transform: translate(73.2px,0) }
+    100% { transform: translate(0,0) }
+}
+.ldio-lips0vs5tu div {
+    position: absolute;
+    width: 73.2px;
+    height: 73.2px;
+    border-radius: 50%;
+    top: 85.39999999999999px;
+    left: 48.8px;
+}
+.ldio-lips0vs5tu div:nth-child(1) {
+    background: #fd3e81;
+    animation: ldio-lips0vs5tu 0.6097560975609756s linear infinite;
+    animation-delay: -0.3048780487804878s;
+}
+.ldio-lips0vs5tu div:nth-child(2) {
+    background: #78eeaf;
+    animation: ldio-lips0vs5tu 0.6097560975609756s linear infinite;
+    animation-delay: 0s;
+}
+.ldio-lips0vs5tu div:nth-child(3) {
+    background: #fd3e81;
+    animation: ldio-lips0vs5tu-o 0.6097560975609756s linear infinite;
+    animation-delay: -0.3048780487804878s;
+}
+.loadingio-spinner-dual-ball-3v8tqe2smu4 {
+    width: 244px;
+    height: 244px;
+    display: inline-block;
+    overflow: hidden;
+    background: none;
+}
+.ldio-lips0vs5tu {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+}
+.ldio-lips0vs5tu div { box-sizing: content-box; }
+
+
+.loading-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 20em;
 }
