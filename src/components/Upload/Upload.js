@@ -27,7 +27,7 @@ const Upload = () => {
 
 
         if (file.type === "image/png" || file.type === "image/jpg" || file.type === "image/webp") {
-            type = "images";
+            type = "image";
         }
         if (file.type === "application/pdf") {
             type = "document";
@@ -35,22 +35,6 @@ const Upload = () => {
         if (file.type === "video/mp4") {
             type = "video";
         }
-
-
-        const myButton = document.querySelector("#myButton");
-        const myPopup = document.querySelector("#myPopup");
-
-        myButton.addEventListener("click", () => {
-            myPopup.style.display = "block";
-        });
-
-        myPopup.addEventListener("click", (event) => {
-            if (event.target === myPopup) {
-                myPopup.style.display = "none";
-            }
-        });
-
-
 
 
         const imagesRef = ref(storageRef, type);
@@ -72,6 +56,10 @@ const Upload = () => {
                         secondary: 'white',
                     },
                 });
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+
 
                 setUploading(false);
             })
@@ -107,26 +95,22 @@ const Upload = () => {
 
     return (
         <div>
-            <Navbar/>
 
 
-                <div className="upload-container">
-                    <h1>Upload a file</h1>
-                    <div className="upload-form">
-                        <input placeholder={"Document name"}/>
-                        <button id="myButton">Click me!</button>
+            <div className="upload-container">
+                <form className="upload-form">
+                    <label htmlFor="file" className="file-label">
+                        <span>Select File</span>
+                        <input type="file" name="file" id="file" onChange={handleFileChange} className="input-file" />
+                    </label>
+                            <button onClick={handleUpload} disabled={!file || uploading}>
+                                {uploading ? 'Uploading...' : 'Upload'}
+                            </button>
+                </form>
+            </div>
 
-                        <div id="myPopup">
-                            <p>This is my pop-up content.</p>
-                        </div>
 
-                        <input type="file" onChange={handleFileChange} />
-                        <button onClick={handleUpload} disabled={!file || uploading}>
-                            {uploading ? 'Uploading...' : 'Upload'}
-                        </button>
-                    </div>
-                </div>
-                <Toaster />
+
 
             {/*<Footer />*/}
         </div>

@@ -22,8 +22,22 @@
     align-items: center;
     padding: 10px;
     background-color: #343138;
+
+
 }
 
+.item-header-left{
+    width: 90%;
+
+}
+
+.item-header-right{
+    width: 10%;
+
+}
+.item-header-right img{
+ float: right;
+}
 .item-header i {
     font-size: 20px;
     margin-right: 10px;
@@ -55,4 +69,14 @@
 
 .item-preview video::-webkit-media-controls {
     display: none !important;
+}
+
+.item-icon{
+    height: 20px;
+}
+
+
+.upload-container.upload-visible {
+    opacity: 1;
+    transform: translateY(0);
 }

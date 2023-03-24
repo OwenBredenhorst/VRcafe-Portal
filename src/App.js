@@ -16,7 +16,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Navbar />} />
           <Route path="/Content" element={<Content />} />
-          <Route path="/Upload" element={<Upload />} />
         </Routes>
       </BrowserRouter>
   );

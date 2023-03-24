@@ -20,9 +20,6 @@ function Navbar() {
                     <Link to="/welcome">
                         <li className="navbar-item">Home</li>
                     </Link>
-                    <Link to="/Upload">
-                        <li className="navbar-item">Upload</li>
-                    </Link>
                     <Link to="/Content">
                         <li className="navbar-item">Files</li>
                     </Link>

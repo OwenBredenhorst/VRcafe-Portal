@@ -5,6 +5,7 @@ import '../../Styling/Globalstyling.css';
 import {getLoginInfo} from "../../services/UserService.tsx";
 
 import { getAuth, signInWithEmailAndPassword  } from "firebase/auth";
+import toast, {Toaster} from "react-hot-toast";
 
 
 
@@ -21,8 +22,26 @@ const Login = () => {
                 // Signed in
                 const user = userCredential.user;
 
-                sessionStorage.setItem('userInfo', JSON.stringify(user));
-                window.location.href = "/welcome";
+
+                toast.success('Welcome : ' + user.email , {
+                    style: {
+                        border: '1px solid #713200',
+                        padding: '16px',
+                        backgroundColor: '#2D2A2F',
+                        color: 'white',
+                    },
+                    iconTheme: {
+                        primary: '#FD3E81',
+                        secondary: 'white',
+                    },
+                });
+
+                setTimeout(() => {
+                    sessionStorage.setItem('userInfo', JSON.stringify(user));
+                    window.location.href = "/welcome";
+                    }, 1000);
+
+
 
             })
             .catch((error) => {
@@ -71,7 +90,10 @@ const Login = () => {
     };
 
     return (
+
+
         <div className="login-container">
+            <Toaster />
             <div className="login-form">
                 <div className="logo-container">
                     <img

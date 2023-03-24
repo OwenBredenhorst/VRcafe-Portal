@@ -7,6 +7,8 @@ import Navbar from '../../containers/Navbar/Navbar';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import checkSession from "../../functions/CheckSession";
+import isLoggedIn from "../../functions/Session";
+import {Toaster} from "react-hot-toast";
 
 const cardsData = [
     {
@@ -52,6 +54,7 @@ const Card = ({ id, title, image, link }) => {
 
 
 const Welcome = () => {
+    const loggedIn = isLoggedIn();
 
 
     useEffect(() => {
@@ -66,13 +69,14 @@ const Welcome = () => {
     return (
         <div>
             <Navbar />
+            <Toaster />
 
 
-                <div className="four-cards-container">
+            {loggedIn && <div className="four-cards-container">
                     {cardsData.map((card) => (
                         <Card key={card.id} {...card} />
                     ))}
-                </div>
+                </div>}
 
             {/*<Footer />*/}
         </div>

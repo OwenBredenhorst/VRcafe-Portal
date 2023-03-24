@@ -1,74 +1,44 @@
-.upload-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-}
 
-.upload-container h1 {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-}
+*{
+    animation-duration: 4s;
 
+
+}
 .upload-form {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    width: 400px;
-    max-width: 100%;
+    align-items: flex-start;
+    padding: 32px;
+    background-color: #2D2D2D;
 }
 
-.upload-form input[type="file"] {
-    margin-bottom: 10px;
-}
-
-.upload-form input[type="file"]::-webkit-file-upload-button {
-    background-color: #713200;
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.upload-form input[type="file"]::-webkit-file-upload-button:hover {
-    background-color: #552b00;
-}
-
-.upload-form input[type="file"]::-webkit-file-upload-button:active {
-    background-color: #8b4200;
-}
-
-.upload-form input[type="file"]::-webkit-file-upload-button:focus {
-    outline: none;
-}
-
-
-.upload-form button:hover {
-    background-color: #552b00;
-}
-
-.upload-form button:active {
-    background-color: #8b4200;
-}
-
-.upload-form button:focus {
-    outline: none;
-}
-
-#myPopup {
+.input-file {
+    float: left;
     display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+}
+
+.file-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: #8f00d3;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 32px;
+}
+
+.file-label:hover {
+    background-color: #2E8B57;
+}
+
+.file-label span {
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.submit-btn{
+    float: left;
 }
