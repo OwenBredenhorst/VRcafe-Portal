@@ -61,7 +61,7 @@ const GridItem = ({item}) => {
             <div className="item-preview">
                 {isImage && (
                     <a href={item.preview} target="_blank" rel="noopener noreferrer">
-                        <img src={item.preview} alt={item.title}/>
+                        <img src={item.thumbnail} alt={item.title}/>
                     </a>
                 )}
                 {isVideo && (
@@ -108,12 +108,16 @@ const Content = () => {
         ])
             .then(([resImages, resVideo, resDocument]) => {
                 const promisesImages = resImages.items.map((itemRef) => {
-                    return getDownloadURL(itemRef).then((url) => {
+                    const thumbnailRef = ref(storage, `image/thumbnails/${itemRef.name}`);
+
+                    return Promise.all([getDownloadURL(itemRef), getDownloadURL(thumbnailRef)]).then(([url, thumbnailUrl]) => {
+                        console.log(thumbnailUrl)
                         const newItem = {
                             id: itemRef.name,
                             type: 'image',
                             title: itemRef.name,
                             preview: url,
+                            thumbnail: thumbnailUrl, // add thumbnail URL
                             icon: 'p',
                         };
                         return newItem;
@@ -157,6 +161,7 @@ const Content = () => {
                 console.error(error);
             });
     }, []);
+
 
     const toggleUploadVisibility = () => {
         setIsUploadVisible(!isUploadVisible);

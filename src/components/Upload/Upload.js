@@ -51,8 +51,8 @@ const Upload = () => {
         const blob = await new Promise((resolve) => {
             ImageResizer.imageFileResizer(
                 file,
-                100, // new width
-                100, // new height
+                200, // new width
+                200, // new height
                 'JPEG', // image type
                 100, // quality
                 0, // rotation
@@ -87,6 +87,7 @@ const Upload = () => {
                         secondary: 'white',
                     },
                 });
+
                 setTimeout(() => {
                     window.location.reload();
                 }, 1000);
@@ -116,6 +117,7 @@ const Upload = () => {
                         secondary: 'white',
                     },
                 });
+
                 setTimeout(() => {
                     window.location.reload();
                 }, 1000);
