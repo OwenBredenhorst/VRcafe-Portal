@@ -7,7 +7,7 @@ import checkSession from "../../functions/CheckSession";
 import './Upload.css';
 import {getStorage, ref, uploadBytes} from "firebase/storage";
 import toast, { Toaster } from 'react-hot-toast';
-
+import ImageResizer from 'react-image-file-resizer';
 let type = ""
 
 const Upload = () => {
@@ -23,11 +23,13 @@ const Upload = () => {
         setFile(event.target.files[0]);
     };
 
-    const handleUpload = () => {
+
+    const handleUpload = async () => {
 
 
         if (file.type === "image/png" || file.type === "image/jpg" || file.type === "image/webp") {
             type = "image";
+
         }
         if (file.type === "application/pdf") {
             type = "document";
@@ -42,9 +44,66 @@ const Upload = () => {
         if (!file) return;
         setUploading(true);
 
+
+
+    if (type === "image"){
+
+        const blob = await new Promise((resolve) => {
+            ImageResizer.imageFileResizer(
+                file,
+                100, // new width
+                100, // new height
+                'JPEG', // image type
+                100, // quality
+                0, // rotation
+                (dataUrl) => {
+                    const byteString = atob(dataUrl.split(',')[1]);
+                    const ab = new ArrayBuffer(byteString.length);
+                    const ia = new Uint8Array(ab);
+                    for (let i = 0; i < byteString.length; i++) {
+                        ia[i] = byteString.charCodeAt(i);
+                    }
+                    const blob = new Blob([ab], { type: 'image/jpeg' });
+                    resolve(blob);
+                },
+                'base64' // output type
+            );
+        });
+
+
+        // Upload the Blob to Firebase Storage
+        const thumbnailRef = ref(imagesRef, 'thumbnails/' + file.name);
+        uploadBytes(thumbnailRef, blob)
+            .then((snapshot) => {
+                toast.success('Low resolution uploaded: ' + file.name, {
+                    style: {
+                        border: '1px solid #713200',
+                        padding: '16px',
+                        backgroundColor: '#2D2A2F',
+                        color: 'white',
+                    },
+                    iconTheme: {
+                        primary: '#FD3E81',
+                        secondary: 'white',
+                    },
+                });
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+                setUploading(false);
+            })
+            .catch((error) => {
+                console.error(error);
+                setUploading(false);
+            });
+
+    }
+
+
+
         uploadBytes(fileRef, file)
             .then((snapshot) => {
-                toast.success('File Uploaded: ' + file.name , {
+                toast.success('File Uploaded: ' + file.name, {
                     style: {
                         border: '1px solid #713200',
                         padding: '16px',
