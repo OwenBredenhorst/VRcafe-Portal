@@ -94,6 +94,7 @@ const Upload = () => {
             })
             .catch((error) => {
                 console.error(error);
+                toast.error(error);
                 setUploading(false);
             });
 
@@ -123,11 +124,18 @@ const Upload = () => {
                 setUploading(false);
             })
             .catch((error) => {
+                toast.error(error);
                 console.error(error);
                 setUploading(false);
             });
     };
 
+
+
+
+
+    /* This is a hook that is called when the component is mounted. It checks if the user is authenticated and if not,
+    redirects to the login page. */
     useEffect(() => {
         const authenticated = checkSession();
         setIsLoading(false);
@@ -136,20 +144,13 @@ const Upload = () => {
         }
     }, []);
 
+
+    /* This is a hook that is called when the component is mounted. It checks if the user is authenticated and if not,
+    redirects to the login page. */
     if (isLoading) {
         return <div>Loading...</div>;
     }
-    const handleDrop = (e) => {
-        e.preventDefault();
-        const file = e.dataTransfer.files[0];
 
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const fileContents = e.target.result;
-            // Pass the file contents to a callback function that will handle the upload
-        };
-        reader.readAsText(file);
-    };
 
 
     return (
@@ -157,7 +158,7 @@ const Upload = () => {
 
 
             <div className="upload-container">
-                <form className="upload-form">
+                <div className="upload-form">
                     <label htmlFor="file" className="file-label">
                         <span>Select File</span>
                         <input type="file" name="file" id="file" onChange={handleFileChange} className="input-file" />
@@ -165,7 +166,7 @@ const Upload = () => {
                             <button onClick={handleUpload} disabled={!file || uploading}>
                                 {uploading ? 'Uploading...' : 'Upload'}
                             </button>
-                </form>
+                </div>
             </div>
 
 
