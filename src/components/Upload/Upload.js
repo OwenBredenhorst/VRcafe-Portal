@@ -27,7 +27,7 @@ const Upload = () => {
     const handleUpload = async () => {
 
 
-        if (file.type === "image/png" || file.type === "image/jpg" || file.type === "image/webp") {
+        if (file.type === "image/png" || file.type === "image/jpg" || file.type === "image/webp" || file.type === "image/jpeg") {
             type = "image";
 
         }
@@ -51,10 +51,10 @@ const Upload = () => {
         const blob = await new Promise((resolve) => {
             ImageResizer.imageFileResizer(
                 file,
-                200, // new width
-                200, // new height
-                'JPEG', // image type
-                100, // quality
+                150, // new width
+                150, // new height
+                'png', // image type
+                30, // quality
                 0, // rotation
                 (dataUrl) => {
                     const byteString = atob(dataUrl.split(',')[1]);
