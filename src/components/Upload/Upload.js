@@ -164,7 +164,7 @@ const Upload = () => {
                         <span>Select File</span>
                         <input type="file" name="file" id="file" onChange={handleFileChange} className="input-file" />
                     </label>
-                            <button onClick={handleUpload} disabled={!file || uploading}>
+                            <button className={"upload-new"} onClick={handleUpload} disabled={!file || uploading}>
                                 {uploading ? 'Uploading...' : 'Upload'}
                             </button>
                 </div>

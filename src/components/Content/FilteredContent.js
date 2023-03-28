@@ -201,7 +201,6 @@ const Content = () => {
 
                     <div className="upload-indicator-container">
                         {loggedIn && <button className="upload-indicator" onClick={toggleUploadVisibility}>Upload</button>}
-
                     </div>
                 </div>
             </nav>

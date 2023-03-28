@@ -2,7 +2,9 @@ import React from 'react';
 import './Navbar.css';
 import {Link} from 'react-router-dom';
 import sessionClear from "../../functions/ClearSession";
+import isLoggedIn from "../../functions/Session";
 
+const loggedIn = isLoggedIn();
 function Navbar() {
     return (
         <nav className="navbar">
@@ -18,7 +20,7 @@ function Navbar() {
             <div className="navbar-right">
                 <ul className="navbar-list">
                     <Link to="/welcome">
-                        <li className="navbar-item">Home</li>
+                        {loggedIn &&  <li className="navbar-item">Home</li>}
                     </Link>
                     <Link to="/Content">
                         <li className="navbar-item">Files</li>
