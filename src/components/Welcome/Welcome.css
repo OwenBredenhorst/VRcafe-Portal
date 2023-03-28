@@ -1,23 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 body {
     margin: 0;
     padding: 0;
 }
 
 .four-cards-card {
-    position: relative; /* set the position of the card to relative */
-    display: inline-block; /* display the cards inline */
-    width: 45%; /* set the width of each card to 25% */
+    position: relative;
+    display: inline-block;
+    width: 45%;
 
 }
 
 .four-cards-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 20px;
     width: 100%;
     margin-top: 100px;
@@ -25,14 +22,14 @@ body {
 }
 
 .four-cards-card {
-    position: relative; /* set the position of the card to relative */
-    display: inline-block; /* display the cards inline */
-    width: 55%; /* set the width of each card to 25% */
+    position: relative;
+    display: inline-block;
+    width: 55%;
 }
 
 
 .four-cards-card img {
-    display: block; /* display the images as blocks */
+    display: block;
 }
 
 .four-cards-card h2 {
@@ -47,6 +44,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
 }
+
 .four-cards {
     display: flex;
     justify-content: center;
@@ -99,7 +97,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
     z-index: 1;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -138,18 +136,30 @@ body {
 }
 
 
-
-
-/* Reset default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Set font family */
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 
+@media only screen and (max-width: 768px) {
+    .four-cards-container {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .four-cards-card {
+        width: 90%;
+        height: 30em;
+        margin: 20px;
+    }
+
+}

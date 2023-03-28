@@ -26,6 +26,7 @@
     cursor: pointer;
     color: white;
     transition: color 0.2s ease-in-out;
+
 }
 
 .navbar-item:hover {
@@ -45,6 +46,8 @@
     }
 
     .navbar-item {
-        margin: 10px 0;
+        margin: 10px 10px;
     }
+
+
 }

@@ -203,8 +203,10 @@ const Content = () => {
                         <li className="navbar-item-filter">Flyers</li>
                     </Link>
 
+                    <div className="upload-indicator-container">
+                        {loggedIn && <button className="upload-indicator" onClick={toggleUploadVisibility}>Upload</button>}
 
-                    {loggedIn && <button style={{marginLeft: "20px"}} onClick={toggleUploadVisibility}>Upload</button>}
+                    </div>
 
                 </div>
             </nav>
