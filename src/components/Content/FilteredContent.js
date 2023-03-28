@@ -118,17 +118,24 @@ const Content = () => {
                 const promisesImages = resImages.items
                     .map((itemRef) => {
 
+                        // Temp img if file is not common
                         let thumbnailRef = ref(storage, `image/thumbnails/logo2.png`);
 
                         if (hash === "image"){
                              thumbnailRef = ref(storage, `image/thumbnails/${itemRef.name}`);
                         }
 
+                        if (hash === "document"){
+                            thumbnailRef = ref(storage, `image/thumbnails/1323882.png`);
+                        }
+
+                        if (hash === "video"){
+                            thumbnailRef = ref(storage, `image/thumbnails/play-button-icon-play-video-sign-arrow-symbol-player-black-triangle-button-isolated-white-background-circle-click-start-m-play-220597455.jpg`);
+                        }
+
+
                         return Promise.all([getDownloadURL(itemRef), getDownloadURL(thumbnailRef)])
                             .then(([url, thumbnailUrl]) => {
-
-                                // Als de het geen image is set thumb url to other
-
                                 const newItem = {
                                     id: itemRef.name,
                                     type: 'image',
