@@ -21,8 +21,6 @@ const GridItem = ({item}) => {
     const isDocument = item.type === 'document';
 
 
-    // TODO Mogelijk komt hier dan alle tags zoals / 1080p \ icon /  banner \ en meer
-
     const handleClick = () => {
 
         console.log(item.type + '/' + item.title);
@@ -56,8 +54,8 @@ const GridItem = ({item}) => {
                     <h3>{item.title}</h3>
                 </div>
                 <div className="item-header-right">
-                    {loggedIn &&  <a onClick={handleClick}><img className={"item-icon"}
-                                                  src="https://cdn-icons-png.flaticon.com/512/656/656857.png"/></a>}
+                    {loggedIn && <a onClick={handleClick}><img className={"item-icon"}
+                                                               src="https://cdn-icons-png.flaticon.com/512/656/656857.png"/></a>}
                 </div>
             </div>
             <div className="item-preview">
@@ -98,72 +96,63 @@ const Content = () => {
     const [isUploadVisible, setIsUploadVisible] = useState(false);
 
     useEffect(() => {
+        loadContent();
+        loadContent();
+    }, []);
+
+    const loadContent = () => {
+
+        const hash = window.location.hash.substr(1);
+        console.log(hash);
+
         const storage = getStorage();
-        const listRefImages = ref(storage, 'image');
-        const listRefVideo = ref(storage, 'video');
-        const listRefDocument = ref(storage, 'document');
+
+
+        const listRefImages = ref(storage, hash);
+
 
         Promise.all([
             listAll(listRefImages),
-            listAll(listRefVideo),
-            listAll(listRefDocument),
         ])
-            .then(([resImages, resVideo, resDocument]) => {
-                const promisesImages = resImages.items.map((itemRef) => {
-                    const thumbnailRef = ref(storage, `image/thumbnails/${itemRef.name}`);
+            .then(([resImages]) => {
+                const promisesImages = resImages.items
+                    .map((itemRef) => {
 
-                    return Promise.all([getDownloadURL(itemRef), getDownloadURL(thumbnailRef)]).then(([url, thumbnailUrl]) => {
-                        console.log(thumbnailUrl)
-                        const newItem = {
-                            id: itemRef.name,
-                            type: 'image',
-                            title: itemRef.name,
-                            preview: url,
-                            thumbnail: thumbnailUrl, // add thumbnail URL
-                            icon: 'p',
-                        };
-                        return newItem;
+                        let thumbnailRef = ref(storage, `image/thumbnails/logo2.png`);
+
+                        if (hash === "image"){
+                             thumbnailRef = ref(storage, `image/thumbnails/${itemRef.name}`);
+                        }
+
+                        return Promise.all([getDownloadURL(itemRef), getDownloadURL(thumbnailRef)])
+                            .then(([url, thumbnailUrl]) => {
+
+                                // Als de het geen image is set thumb url to other
+
+                                const newItem = {
+                                    id: itemRef.name,
+                                    type: 'image',
+                                    title: itemRef.name,
+                                    preview: url,
+                                    thumbnail: thumbnailUrl,
+                                    icon: 'p',
+                                };
+                                return newItem;
+
+                            });
                     });
-                });
 
-                const promisesVideo = resVideo.items.map((itemRef) => {
-                    return getDownloadURL(itemRef).then((url) => {
-                        const newItem = {
-                            id: itemRef.name,
-                            type: 'video',
-                            title: itemRef.name,
-                            preview: url,
-                            icon: 'v',
-                        };
-                        return newItem;
-                    });
-                });
 
-                const promisesDocument = resDocument.items.map((itemRef) => {
-                    return getDownloadURL(itemRef).then((url) => {
-                        const newItem = {
-                            id: itemRef.name,
-                            type: 'document',
-                            title: itemRef.name,
-                            preview: url,
-                            icon: 'd',
-                        };
-                        return newItem;
-                    });
-                });
-
-                Promise.all([...promisesImages, ...promisesVideo, ...promisesDocument]).then(
-                    (newItems) => {
+                Promise.all([...promisesImages])
+                    .then((newItems) => {
                         setItems(newItems);
                         setIsLoading(false);
-                    }
-                );
+                    });
             })
             .catch((error) => {
                 console.error(error);
             });
-    }, []);
-
+    }
 
     const toggleUploadVisibility = () => {
         setIsUploadVisible(!isUploadVisible);
@@ -203,6 +192,8 @@ const Content = () => {
                         <li className="navbar-item-filter">Flyers</li>
                     </Link>
 
+
+                    <button className="navbar-item-filter-button">Filter</button>
 
                     {loggedIn && <button style={{marginLeft: "20px"}} onClick={toggleUploadVisibility}>Upload</button>}
 

@@ -80,3 +80,26 @@
     opacity: 1;
     transform: translateY(0);
 }
+.navbar-item-filter{
+
+    color: white;
+    text-decoration: none;
+    text-underline: none;
+    float: left;
+    height: 100%;
+    margin-top: 1em;
+    margin-left: 20px;
+    list-style: none;
+
+}
+
+.navbar-item-filter:hover{
+    color: #00ef6f;
+    font-weight: bold;
+
+}
+
+.navbar-item-filter-button{
+    margin-left:60px;
+
+}

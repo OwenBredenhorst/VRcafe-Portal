@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import '../../Styling/Globalstyling.css';
-import Navbar from '../../containers/Navbar/Navbar';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import checkSession from "../../functions/CheckSession";
 import './Upload.css';
 import {getStorage, ref, uploadBytes} from "firebase/storage";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import ImageResizer from 'react-image-file-resizer';
 let type = ""
 
@@ -51,11 +50,11 @@ const Upload = () => {
         const blob = await new Promise((resolve) => {
             ImageResizer.imageFileResizer(
                 file,
-                150, // new width
-                150, // new height
-                'png', // image type
-                30, // quality
-                0, // rotation
+                150,
+                150,
+                'png',
+                30,
+                0,
                 (dataUrl) => {
                     const byteString = atob(dataUrl.split(',')[1]);
                     const ab = new ArrayBuffer(byteString.length);
@@ -66,7 +65,7 @@ const Upload = () => {
                     const blob = new Blob([ab], { type: 'image/jpeg' });
                     resolve(blob);
                 },
-                'base64' // output type
+                'base64'
             );
         });
 
