@@ -9,6 +9,7 @@ import Upload from "../Upload/Upload";
 import isLoggedIn from "../../functions/Session";
 import toast, {Toaster} from "react-hot-toast";
 import {Link} from "react-router-dom";
+import Filter from "../../containers/Filter/Filter";
 
 let items = [];
 
@@ -222,8 +223,9 @@ const Content = () => {
                 </div>
             ) : (
                 <div className='App'>
-
+                    <Filter />
                     <Grid items={items}/>
+
                 </div>
             )}
             {/*<Footer />*/}
