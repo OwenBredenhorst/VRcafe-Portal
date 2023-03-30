@@ -42,11 +42,8 @@ const GridItem = ({item}) => {
             }, 1000);
 
         }).catch((error) => {
-            // Uh-oh, an error occurred!
             toast.error("Error deleting file: " + error)
         });
-
-
     };
 
 
@@ -104,12 +101,19 @@ const Content = () => {
         const listRefVideo = ref(storage, 'video');
         const listRefDocument = ref(storage, 'document');
 
+        const listRefBanner = ref(storage, 'banner');
+        const listRefLogo= ref(storage, 'logo');
+        const listRefIcon= ref(storage, 'icon');
+
         Promise.all([
             listAll(listRefImages),
             listAll(listRefVideo),
             listAll(listRefDocument),
+            listAll(listRefBanner),
+            listAll(listRefLogo),
+            listAll(listRefIcon),
         ])
-            .then(([resImages, resVideo, resDocument]) => {
+            .then(([resImages, resVideo, resDocument, resBanner,resLogo,resIcon]) => {
                 const promisesImages = resImages.items.map((itemRef) => {
                     const thumbnailRef = ref(storage, `image/thumbnails/${itemRef.name}`);
 
@@ -126,6 +130,61 @@ const Content = () => {
                         return newItem;
                     });
                 });
+
+                const promisesBanner = resBanner.items.map((itemRef) => {
+                    const thumbnailRef = ref(storage, `banner/thumbnails/${itemRef.name}`);
+
+                    return Promise.all([getDownloadURL(itemRef), getDownloadURL(thumbnailRef)]).then(([url, thumbnailUrl]) => {
+                        console.log(thumbnailUrl)
+                        const newItem = {
+                            id: itemRef.name,
+                            type: 'image',
+                            title: itemRef.name,
+                            preview: url,
+                            thumbnail: thumbnailUrl,
+                            icon: 'p',
+                        };
+                        return newItem;
+                    });
+                });
+
+
+                const promisesIcon = resIcon.items.map((itemRef) => {
+                    const thumbnailRef = ref(storage, `icon/thumbnails/${itemRef.name}`);
+
+                    return Promise.all([getDownloadURL(itemRef), getDownloadURL(thumbnailRef)]).then(([url, thumbnailUrl]) => {
+                        console.log(thumbnailUrl)
+                        const newItem = {
+                            id: itemRef.name,
+                            type: 'image',
+                            title: itemRef.name,
+                            preview: url,
+                            thumbnail: thumbnailUrl,
+                            icon: 'p',
+                        };
+                        return newItem;
+                    });
+                });
+
+
+                const promisesLogo = resLogo.items.map((itemRef) => {
+                    const thumbnailRef = ref(storage, `logo/thumbnails/${itemRef.name}`);
+
+                    return Promise.all([getDownloadURL(itemRef), getDownloadURL(thumbnailRef)]).then(([url, thumbnailUrl]) => {
+                        console.log(thumbnailUrl)
+                        const newItem = {
+                            id: itemRef.name,
+                            type: 'image',
+                            title: itemRef.name,
+                            preview: url,
+                            thumbnail: thumbnailUrl,
+                            icon: 'p',
+                        };
+                        return newItem;
+                    });
+                });
+
+
 
                 const promisesVideo = resVideo.items.map((itemRef) => {
                     return getDownloadURL(itemRef).then((url) => {
@@ -153,7 +212,9 @@ const Content = () => {
                     });
                 });
 
-                Promise.all([...promisesImages, ...promisesVideo, ...promisesDocument]).then(
+
+
+                Promise.all([...promisesImages, ...promisesBanner, ...promisesLogo, ...promisesIcon, ...promisesVideo, ...promisesDocument]).then(
                     (newItems) => {
                         setItems(newItems);
                         setIsLoading(false);
@@ -188,7 +249,7 @@ const Content = () => {
             <nav className="navbar">
                 <div className="checkbox-container">
 
-                    <Link onClick={reload} to="/FilteredContent#icons">
+                    <Link onClick={reload} to="/FilteredContent#icon">
                         <li className="navbar-item-filter">Icons</li>
                     </Link>
                     <Link onClick={reload} to="/FilteredContent#video">
@@ -200,7 +261,7 @@ const Content = () => {
                     <Link onClick={reload} to="/FilteredContent#image">
                         <li className="navbar-item-filter">Banners</li>
                     </Link>
-                    <Link onClick={reload} to="/FilteredContent#Flyers">
+                    <Link onClick={reload} to="/FilteredContent#flyers">
                         <li className="navbar-item-filter">Flyers</li>
                     </Link>
 

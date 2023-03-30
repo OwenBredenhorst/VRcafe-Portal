@@ -50,3 +50,44 @@
     height: 3.61rem;
 
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+}
+
+.dropdown select {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    background-color: #2e2d2e;
+
+    color: white;
+    font-size: 20px;
+    margin-top: 0.5em;
+    height: 100%;
+
+
+}
+
+.dropdown select:focus {
+    outline: none;
+}
+
+.dropdown input {
+    padding: 8px 16px;
+    font-size: 26px;
+    border: none;
+    border-left: 1px solid #ccc;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.dropdown input:focus {
+    outline: none;
+}
+
+

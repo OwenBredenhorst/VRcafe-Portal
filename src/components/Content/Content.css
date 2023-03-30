@@ -11,14 +11,28 @@
     border-radius: 4px;
     overflow: hidden;
     transition: transform 0.2s ease-in-out;
+
 }
 
 .grid-item:hover {
     transform: scale(1.02);
 }
 
+.grid-item-folder {
+    background-color: #2a272d;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    height: 40px;
+}
+
+.grid-item-folder:hover {
+    transform: scale(1.02);
+}
+
 .item-header {
-    
+
     display: flex;
     align-items: center;
     padding: 10px;
@@ -79,6 +93,10 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+
+
+
 .navbar-item-filter{
 
     color: white;

@@ -47,6 +47,8 @@ const GridItem = ({item}) => {
     };
 
 
+
+
     return (
         <div className="grid-item">
             <div className="item-header">
@@ -197,6 +199,9 @@ const Content = () => {
                     </Link>
                     <Link onClick={reload} to="/FilteredContent#Flyers">
                         <li className="navbar-item-filter">Flyers</li>
+                    </Link>
+                    <Link onClick={reload} to="/FilteredContent#logo">
+                        <li className="navbar-item-filter">Logo</li>
                     </Link>
 
                     <div className="upload-indicator-container">
