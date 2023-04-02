@@ -22,15 +22,16 @@ const GridItem = ({item}) => {
     const isDocument = item.type === 'document';
 
 
-    // TODO Mogelijk komt hier dan alle tags zoals / 1080p \ icon /  banner \ en meer
 
+    /**
+     * It deletes the file from the storage bucket
+     */
     const handleClick = () => {
 
-        console.log(item.type + '/' + item.title);
         const storage = getStorage();
 
 
-        const desertRef = ref(storage, item.type + '/' + item.title);
+        const desertRef = ref(storage, item.folder + '/' + item.title);
 
         // Delete the file
         deleteObject(desertRef).then(() => {
@@ -93,7 +94,7 @@ const Grid = ({items}) => (
 const Content = () => {
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [isUploadVisible, setIsUploadVisible] = useState(false);
+
 
     useEffect(() => {
         const storage = getStorage();
@@ -126,6 +127,7 @@ const Content = () => {
                             preview: url,
                             thumbnail: thumbnailUrl, // add thumbnail URL
                             icon: 'p',
+                            folder: 'image',
                         };
                         return newItem;
                     });
@@ -143,6 +145,7 @@ const Content = () => {
                             preview: url,
                             thumbnail: thumbnailUrl,
                             icon: 'p',
+                            folder: 'banner',
                         };
                         return newItem;
                     });
@@ -161,6 +164,7 @@ const Content = () => {
                             preview: url,
                             thumbnail: thumbnailUrl,
                             icon: 'p',
+                            folder: 'icon',
                         };
                         return newItem;
                     });
@@ -179,6 +183,7 @@ const Content = () => {
                             preview: url,
                             thumbnail: thumbnailUrl,
                             icon: 'p',
+                            folder: 'logo',
                         };
                         return newItem;
                     });
@@ -194,6 +199,7 @@ const Content = () => {
                             title: itemRef.name,
                             preview: url,
                             icon: 'v',
+                            folder: 'video',
                         };
                         return newItem;
                     });
@@ -207,6 +213,7 @@ const Content = () => {
                             title: itemRef.name,
                             preview: url,
                             icon: 'd',
+                            folder: 'document',
                         };
                         return newItem;
                     });
@@ -227,51 +234,14 @@ const Content = () => {
     }, []);
 
 
-    const toggleUploadVisibility = () => {
-        setIsUploadVisible(!isUploadVisible);
-    };
 
-    const reload = () => {
-
-        setTimeout(() => {
-            window.location.reload();
-        }, 100);
-    };
 
     return (
         <div>
 
             <Toaster/>
             <Navbar/>
-            <div className="upload-container upload-visible">
-                {loggedIn && isUploadVisible && <Upload/>}
-            </div>
-            <nav className="navbar">
-                <div className="checkbox-container">
 
-                    <Link onClick={reload} to="/FilteredContent#icon">
-                        <li className="navbar-item-filter">Icons</li>
-                    </Link>
-                    <Link onClick={reload} to="/FilteredContent#video">
-                        <li className="navbar-item-filter">Videos</li>
-                    </Link>
-                    <Link onClick={reload} to="/FilteredContent#document">
-                        <li className="navbar-item-filter">Documents</li>
-                    </Link>
-                    <Link onClick={reload} to="/FilteredContent#image">
-                        <li className="navbar-item-filter">Banners</li>
-                    </Link>
-                    <Link onClick={reload} to="/FilteredContent#flyers">
-                        <li className="navbar-item-filter">Flyers</li>
-                    </Link>
-
-                    <div className="upload-indicator-container">
-                        {loggedIn && <button className="upload-indicator" onClick={toggleUploadVisibility}>Upload</button>}
-
-                    </div>
-
-                </div>
-            </nav>
             {isLoading ? (
                 <div className='loading-animation'>
                     <div className='loadingio-spinner-dual-ball-3v8tqe2smu4'>

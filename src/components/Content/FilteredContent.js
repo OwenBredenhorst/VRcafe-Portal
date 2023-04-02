@@ -9,9 +9,11 @@ import Upload from "../Upload/Upload";
 import isLoggedIn from "../../functions/Session";
 import toast, {Toaster} from "react-hot-toast";
 import {Link} from "react-router-dom";
+import Filter from "../../containers/Filter/Filter";
 
 let items = [];
 
+const hash = window.location.hash.substr(1);
 
 const loggedIn = isLoggedIn();
 
@@ -21,13 +23,12 @@ const GridItem = ({item}) => {
     const isDocument = item.type === 'document';
 
 
+    /**
+     * It deletes the file from the storage bucket
+     */
     const handleClick = () => {
-
-        console.log(item.type + '/' + item.title);
         const storage = getStorage();
-
-
-        const desertRef = ref(storage, item.type + '/' + item.title);
+        const desertRef = ref(storage, hash + '/' + item.title);
 
         // Delete the file
         deleteObject(desertRef).then(() => {
@@ -39,11 +40,8 @@ const GridItem = ({item}) => {
             }, 1000);
 
         }).catch((error) => {
-            // Uh-oh, an error occurred!
             toast.error("Error deleting file: " + error)
         });
-
-
     };
 
 
@@ -121,14 +119,14 @@ const Content = () => {
                     .map((itemRef) => {
 
                         // Temp img if file is not common
-                        let thumbnailRef = ref(storage, `image/thumbnails/logo2.png`);
+                        let thumbnailRef = ref(storage, `temp/error.jpg`);
 
-                        if (hash === "image"){
-                             thumbnailRef = ref(storage, `image/thumbnails/${itemRef.name}`);
+                        if (hash === "image" || hash === "logo" || hash === "banner"){
+                             thumbnailRef = ref(storage, hash +`/thumbnails/${itemRef.name}`);
                         }
 
                         if (hash === "document"){
-                            thumbnailRef = ref(storage, `image/thumbnails/1323882.png`);
+                            thumbnailRef = ref(storage, `temp/temp.png`);
                         }
 
                         if (hash === "video"){
@@ -145,6 +143,7 @@ const Content = () => {
                                     preview: url,
                                     thumbnail: thumbnailUrl,
                                     icon: 'p',
+                                    folder: '' + hash,
                                 };
                                 return newItem;
 
@@ -163,16 +162,7 @@ const Content = () => {
             });
     }
 
-    const toggleUploadVisibility = () => {
-        setIsUploadVisible(!isUploadVisible);
-    };
 
-    const reload = () => {
-
-        setTimeout(() => {
-            window.location.reload();
-        }, 100);
-    };
 
     return (
         <div>
@@ -182,33 +172,7 @@ const Content = () => {
             <div className="upload-container upload-visible">
                 {loggedIn && isUploadVisible && <Upload/>}
             </div>
-            <nav className="navbar">
-                <div className="checkbox-container">
 
-                    <Link onClick={reload} to="/FilteredContent#icons">
-                        <li className="navbar-item-filter">Icons</li>
-                    </Link>
-                    <Link onClick={reload} to="/FilteredContent#video">
-                        <li className="navbar-item-filter">Videos</li>
-                    </Link>
-                    <Link onClick={reload} to="/FilteredContent#document">
-                        <li className="navbar-item-filter">Documents</li>
-                    </Link>
-                    <Link onClick={reload} to="/FilteredContent#image">
-                        <li className="navbar-item-filter">Banners</li>
-                    </Link>
-                    <Link onClick={reload} to="/FilteredContent#Flyers">
-                        <li className="navbar-item-filter">Flyers</li>
-                    </Link>
-                    <Link onClick={reload} to="/FilteredContent#logo">
-                        <li className="navbar-item-filter">Logo</li>
-                    </Link>
-
-                    <div className="upload-indicator-container">
-                        {loggedIn && <button className="upload-indicator" onClick={toggleUploadVisibility}>Upload</button>}
-                    </div>
-                </div>
-            </nav>
             {isLoading ? (
                 <div className='loading-animation'>
                     <div className='loadingio-spinner-dual-ball-3v8tqe2smu4'>
@@ -221,7 +185,7 @@ const Content = () => {
                 </div>
             ) : (
                 <div className='App'>
-
+                    <Filter />
                     <Grid items={items}/>
                 </div>
             )}
