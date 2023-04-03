@@ -31,13 +31,13 @@ const Upload = () => {
 
         if (file.type === "image/png" || file.type === "image/jpg" || file.type === "image/webp" || file.type === "image/jpeg") {
             type = "image";
-
-        }
-        if (file.type === "application/pdf") {
+        } else if (file.type === "application/pdf") {
             type = "document";
-        }
-        if (file.type === "video/mp4") {
+        } else if (file.type === "video/mp4") {
             type = "video";
+        } else {
+            toast.error("Unrecognized file type: " + file.type);
+            return;
         }
 
 
