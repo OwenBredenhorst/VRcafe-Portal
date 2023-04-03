@@ -29,17 +29,23 @@ const Upload = () => {
     const handleUpload = async () => {
 
 
-        if (file.type === "image/png" || file.type === "image/jpg" || file.type === "image/webp" || file.type === "image/jpeg") {
-            type = "image";
-        } else if (file.type === "application/pdf") {
-            type = "document";
-        } else if (file.type === "video/mp4") {
-            type = "video";
-        } else {
-            toast.error("Unrecognized file type: " + file.type);
-            return;
+        switch (file.type) {
+            case "image/png":
+            case "image/jpg":
+            case "image/webp":
+            case "image/jpeg":
+                type = "image";
+                break;
+            case "application/pdf":
+                type = "document";
+                break;
+            case "video/mp4":
+                type = "video";
+                break;
+            default:
+                toast.error("Unrecognized file type: " + file.type);
+                return;
         }
-
 
 
         const imagesRef = ref(storageRef, selectedOption);
