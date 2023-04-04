@@ -10,13 +10,13 @@ const cardsData = [
     {
         id: 1,
         title: 'Files',
-        image: 'https://imageio.forbes.com/specials-images/imageserve/985895696/Datacenter/960x0.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/vrcafeportal-1f687.appspot.com/o/temp%2Fback.png?alt=media&token=e19c480b-3c7f-4b6c-ba14-fb97ac955bb1',
         link: '/Content'
     },
     {
         id: 2,
         title: 'Google drive',
-        image: 'https://blogthinkbig.com/wp-content/uploads/sites/4/2020/01/Google-Drive-Empresa-Fondo.jpg?fit=1500%2C1000',
+        image: 'https://firebasestorage.googleapis.com/v0/b/vrcafeportal-1f687.appspot.com/o/temp%2Fback.png?alt=media&token=e19c480b-3c7f-4b6c-ba14-fb97ac955bb1',
         link: 'https://drive.google.com/drive/u/2/folders/11I9OZaxcLIU4OoyNdm4y0Ltu-LhudIMU'
     },
     {

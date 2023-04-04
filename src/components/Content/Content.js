@@ -73,7 +73,7 @@ const GridItem = ({item}) => {
                 {isDocument && (
                     <a href={item.preview} target="_blank" rel="noopener noreferrer">
                         <img
-                            src="https://cdn2.iconfinder.com/data/icons/adobe-acrobat-pdf/512/download-pdf-file-folder-storage-512.png"
+                            src="https://firebasestorage.googleapis.com/v0/b/vrcafeportal-1f687.appspot.com/o/temp%2Fpdf-2127829_960_720.png?alt=media&token=64de39ae-04f0-4bad-b596-683cd286bcdf"
                             alt={item.title}
                         />
                     </a>

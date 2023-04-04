@@ -103,11 +103,7 @@ const Content = () => {
     const loadContent = () => {
 
         const hash = window.location.hash.substr(1);
-        console.log(hash);
-
         const storage = getStorage();
-
-
         const listRefImages = ref(storage, hash);
 
 
@@ -119,18 +115,19 @@ const Content = () => {
                     .map((itemRef) => {
 
                         // Temp img if file is not common
-                        let thumbnailRef = ref(storage, `temp/error.jpg`);
+                        let thumbnailRef = ref(storage, `temp/error.png`);
 
                         if (hash === "image" || hash === "logo" || hash === "banner"){
                              thumbnailRef = ref(storage, hash +`/thumbnails/${itemRef.name}`);
                         }
 
                         if (hash === "document"){
-                            thumbnailRef = ref(storage, `temp/temp.png`);
+                            thumbnailRef = ref(storage, `temp/pdf-2127829_960_720.png`);
                         }
 
                         if (hash === "video"){
-                            thumbnailRef = ref(storage, `image/thumbnails/play-button-icon-play-video-sign-arrow-symbol-player-black-triangle-button-isolated-white-background-circle-click-start-m-play-220597455.jpg`);
+
+                            thumbnailRef = ref(storage, `temp/videoTemp.png`);
                         }
 
 
