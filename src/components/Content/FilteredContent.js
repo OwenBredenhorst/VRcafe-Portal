@@ -117,7 +117,8 @@ const Content = () => {
                         // Temp img if file is not common
                         let thumbnailRef = ref(storage, `temp/error.png`);
 
-                        if (hash === "image" || hash === "logo" || hash === "banner"){
+                        if (hash === "image" || hash === "logo" || hash === "banner" || hash === "icon" || hash === "giftcard" || hash === "vormgeving"
+                        || hash === "picelpictogram" || hash === "illustraties" || hash === "headset" || hash === "vrcafe" || hash === "airhocky" || hash === "arcade"){
                              thumbnailRef = ref(storage, hash +`/thumbnails/${itemRef.name}`);
                         }
 
@@ -186,7 +187,6 @@ const Content = () => {
                     <Grid items={items}/>
                 </div>
             )}
-            {/*<Footer />*/}
         </div>
     );
 };

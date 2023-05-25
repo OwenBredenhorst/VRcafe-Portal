@@ -15,7 +15,7 @@ const Upload = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [file, setFile] = useState(null);
     const [uploading, setUploading] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('logo');
+    const [selectedOption, setSelectedOption] = useState('arcade');
 
     const storage = getStorage();
     const storageRef = ref(storage);
@@ -184,11 +184,17 @@ const Upload = () => {
                     <div className="dropdown">
                         <select value={selectedOption} onChange={handleChange} name="content-type">
                             <option value="logo">Logo</option>
-                            <option value="image">Image</option>
+                            <option value="giftcard">Giftcard</option>
                             <option value="video">Video</option>
-                            <option value="banner">Banner</option>
+                            <option value="vormgeving">Vormgeving</option>
                             <option value="document">Document</option>
                             <option value="icon">Icon</option>
+                            <option value="picelpictogram">Picelpictogram</option>
+                            <option value="illustraties">Illustraties</option>
+                            <option value="headset">Headset</option>
+                            <option value="vrcafe">VRcafe</option>
+                            <option value="arcade">Arcade</option>
+                            <option value="airhocky">Airhocky</option>
                         </select>
                     </div>
                 </div>
