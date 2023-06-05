@@ -151,18 +151,34 @@ const Content = () => {
                             "vrcafe",
                             "personeel"
                         ];
-                        const isMP4 = itemRef.fullPath.endsWith('.mp4');
 
-                        if (isMP4) {
+                        const allowedExtensions = ['.mp4', '.avi', '.mov', '.wmv'];
+                        const fileExtension = itemRef.fullPath.substring(itemRef.fullPath.lastIndexOf('.'));
+
+                        const isVideo = allowedExtensions.includes(fileExtension);
+
+                        const allowedFileExtensions = ['.pdf'];
+                        const PDFExtension = itemRef.fullPath.substring(itemRef.fullPath.lastIndexOf('.'));
+
+                        const isPDF = allowedFileExtensions.includes(PDFExtension);
+
+
+                        if (isVideo) {
                             thumbnailRef = ref(storage, "temp/videoTemp.png");
-                        } else if (hash === "document") {
+                        } else if (isPDF) {
                             thumbnailRef = ref(storage, "temp/pdf-2127829_960_720.png");
-                        } else if (commonHashes.includes(hash)){
-                            thumbnailRef = ref(storage, `${hash}/thumbnails/${itemRef.name}`);
-
                         } else {
-                            thumbnailRef = ref(storage, "temp/error.png");
+                            try {
+                                if (commonHashes.includes(hash)) {
+                                    thumbnailRef = ref(storage, `${hash}/thumbnails/${itemRef.name}`);
+                                } else {
+                                    thumbnailRef = ref(storage, "temp/error.png");
+                                }
+                            } catch (error) {
+                             console.log(error);
+                            }
                         }
+
 
                         return Promise.all([getDownloadURL(itemRef), getDownloadURL(thumbnailRef)])
                             .then(([url, thumbnailUrl]) => {
