@@ -14,11 +14,13 @@ let type = ""
 const Upload = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [file, setFile] = useState(null);
+    const [filetest, setFiletest] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [selectedOption, setSelectedOption] = useState('video');
-
+    const [compressedImage, setCompressedImage] = useState(null);
     const storage = getStorage();
     const storageRef = ref(storage);
+
 
 
     const handleFileChange = (event) => {
@@ -56,60 +58,89 @@ const Upload = () => {
 
         if (type === "image") {
 
-            const blob = await new Promise((resolve) => {
-                ImageResizer.imageFileResizer(
-                    file,
-                    200,
-                    200,
-                    'png',
-                    30,
-                    0,
-                    (dataUrl) => {
-                        const byteString = atob(dataUrl.split(',')[1]);
-                        const ab = new ArrayBuffer(byteString.length);
-                        const ia = new Uint8Array(ab);
-                        for (let i = 0; i < byteString.length; i++) {
-                            ia[i] = byteString.charCodeAt(i);
-                        }
-                        const blob = new Blob([ab], { type: 'image/png' });
-                        resolve(blob);
-                    },
-                    'base64'
-                );
-            });
+            // const blob = await new Promise((resolve) => {
+            //     ImageResizer.imageFileResizer(
+            //         file,
+            //         200,
+            //         200,
+            //         'png',
+            //         30,
+            //         0,
+            //         (dataUrl) => {
+            //             const byteString = atob(dataUrl.split(',')[1]);
+            //             const ab = new ArrayBuffer(byteString.length);
+            //             const ia = new Uint8Array(ab);
+            //             for (let i = 0; i < byteString.length; i++) {
+            //                 ia[i] = byteString.charCodeAt(i);
+            //             }
+            //             const blob = new Blob([ab], { type: 'image/png' });
+            //             resolve(blob);
+            //         },
+            //         'base64'
+            //     );
+            // });
 
 
+            if (file) {
+                setUploading(true);
 
-            // Upload the Blob to Firebase Storage
-            const thumbnailRef = ref(imagesRef, 'thumbnails/' + file.name);
-            console.log(thumbnailRef)
-            uploadBytes(thumbnailRef, blob)
-                .then((snapshot) => {
-                    toast.success('Low resolution uploaded: ' + file.name, {
-                        style: {
-                            border: '1px solid #713200',
-                            padding: '16px',
-                            backgroundColor: '#2D2A2F',
-                            color: 'white',
-                        },
-                        iconTheme: {
-                            primary: '#FD3E81',
-                            secondary: 'white',
-                        },
+                const image = new Image();
+                image.src = URL.createObjectURL(file);
+
+                image.onload = async () => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = 200;
+                    canvas.height = 200;
+
+                    ctx.drawImage(image, 0, 0, 200, 200);
+
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.3);
+
+                    // Convert data URL to Blob
+                    const response = await fetch(dataUrl);
+                    const blob = await response.blob();
+
+                    setCompressedImage(blob);
+                    uploadToFirebase(blob);
+                    setUploading(false);
+                };
+            }
+
+            const uploadToFirebase = (imageBlob) => {
+                // Upload the Blob to Firebase Storage
+                const thumbnailRef = ref(imagesRef, 'thumbnails/' + file.name);
+                console.log(thumbnailRef)
+                uploadBytes(thumbnailRef, imageBlob)
+                    .then((snapshot) => {
+                        toast.success('Low resolution uploaded: ' + file.name, {
+                            style: {
+                                border: '1px solid #713200',
+                                padding: '16px',
+                                backgroundColor: '#2D2A2F',
+                                color: 'white',
+                            },
+                            iconTheme: {
+                                primary: '#FD3E81',
+                                secondary: 'white',
+                            },
+                        });
+
+                        setTimeout(() => {
+                            // window.location.reload();
+                        }, 1000);
+                        setUploading(false);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        toast.error(error);
+                        setUploading(false);
                     });
 
-                    setTimeout(() => {
-                        // window.location.reload();
-                    }, 1000);
-                    setUploading(false);
-                })
-                .catch((error) => {
-                    console.error(error);
-                    toast.error(error);
-                    setUploading(false);
-                });
+            }
 
         }
+
 
 
         uploadBytes(fileRef, file)
@@ -175,9 +206,9 @@ const Upload = () => {
                 <div className="upload-form">
                     <label htmlFor="file" className="file-label">
                         <span>Select File</span>
-                        <input type="file" name="file" id="file" onChange={handleFileChange} className="input-file"/>
+                        <input type="file" name="file" id="file" onChange={handleFileChange} className="input-file" />
                     </label>
-                    <button className={"upload-new"} onClick={handleUpload} disabled={!file || uploading}>
+                    <button className="upload-new" onClick={handleUpload} disabled={!file || uploading}>
                         {uploading ? 'Uploading...' : 'Upload'}
                     </button>
 
