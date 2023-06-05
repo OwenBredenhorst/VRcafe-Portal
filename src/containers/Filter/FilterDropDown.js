@@ -43,6 +43,7 @@ function FilterDropDown() {
                 {id: 2, title: 'Isomerty', link: '/FilteredContent#isomerty'},
                 {id: 3, title: 'Picelpictogram', link: '/FilteredContent#picelpictogram'},
                 {id: 4, title: 'Illustraties', link: '/FilteredContent#illustraties'},
+                {id: 4, title: 'Video', link: '/FilteredContent#video'},
             ],
         },
 

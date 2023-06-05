@@ -15,7 +15,7 @@ const Upload = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [file, setFile] = useState(null);
     const [uploading, setUploading] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('valtentijnsdag');
+    const [selectedOption, setSelectedOption] = useState('video');
 
     const storage = getStorage();
     const storageRef = ref(storage);

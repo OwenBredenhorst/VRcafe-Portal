@@ -151,14 +151,15 @@ const Content = () => {
                             "vrcafe",
                             "personeel"
                         ];
+                        const isMP4 = itemRef.fullPath.endsWith('.mp4');
 
-
-                        if (commonHashes.includes(hash)) {
-                            thumbnailRef = ref(storage, `${hash}/thumbnails/${itemRef.name}`);
+                        if (isMP4) {
+                            thumbnailRef = ref(storage, "temp/videoTemp.png");
                         } else if (hash === "document") {
                             thumbnailRef = ref(storage, "temp/pdf-2127829_960_720.png");
-                        } else if (hash === "video") {
-                            thumbnailRef = ref(storage, "temp/videoTemp.png");
+                        } else if (commonHashes.includes(hash)){
+                            thumbnailRef = ref(storage, `${hash}/thumbnails/${itemRef.name}`);
+
                         } else {
                             thumbnailRef = ref(storage, "temp/error.png");
                         }
