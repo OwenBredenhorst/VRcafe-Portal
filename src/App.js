@@ -7,6 +7,7 @@ import WelcomeBedrijf from "./components/Welcome/WelcomeBedrijf";
 import Upload from "./components/Upload/Upload";
 import FilteredContent from "./components/Content/FilteredContent";
 import Filter from "./containers/Filter/Filter";
+import FilterDropDown from "./containers/Filter/FilterDropDown";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/Content" element={<Content />} />
           <Route path="/FilteredContent" element={<FilteredContent />} />
           <Route path="/Filter" element={<Filter />} />
+          <Route path="/FilterDropDown" element={<FilterDropDown />} />
         </Routes>
       </BrowserRouter>
   );

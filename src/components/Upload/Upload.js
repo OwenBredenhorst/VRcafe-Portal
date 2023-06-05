@@ -15,7 +15,7 @@ const Upload = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [file, setFile] = useState(null);
     const [uploading, setUploading] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('arcade');
+    const [selectedOption, setSelectedOption] = useState('valtentijnsdag');
 
     const storage = getStorage();
     const storageRef = ref(storage);
@@ -71,12 +71,13 @@ const Upload = () => {
                         for (let i = 0; i < byteString.length; i++) {
                             ia[i] = byteString.charCodeAt(i);
                         }
-                        const blob = new Blob([ab], {type: 'image/jpeg'});
+                        const blob = new Blob([ab], { type: 'image/png' });
                         resolve(blob);
                     },
                     'base64'
                 );
             });
+
 
 
             // Upload the Blob to Firebase Storage
@@ -195,6 +196,23 @@ const Upload = () => {
                             <option value="vrcafe">VRcafe</option>
                             <option value="arcade">Arcade</option>
                             <option value="airhocky">Airhocky</option>
+                            <option value="aanbod">Aanbod</option>
+                            <option value="bedrijfsuitje">Bedrijfsuitje</option>
+                            <option value="escapeRoom">EscapeRoom</option>
+                            <option value="experience">Experience</option>
+                            <option value="kinderfeestje">Kinderfeestje</option>
+                            <option value="consumptie">Consumptie</option>
+                            <option value="design">Design</option>
+                            <option value="isomerty">Isomerty</option>
+                            <option value="lasergamen">Lasergamen</option>
+                            <option value="oplocatie">Op Locatie</option>
+                            <option value="racen">Racen</option>
+                            <option value="home">Home</option>
+                            <option value="herfst">Herfst</option>
+                            <option value="kerst">kerst</option>
+                            <option value="lente">lente</option>
+                            <option value="sinterklaas">sinterklaas</option>
+                            <option value="valtentijnsdag">valtentijnsdag</option>
                         </select>
                     </div>
                 </div>

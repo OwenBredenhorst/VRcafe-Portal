@@ -237,7 +237,75 @@ function Filter() {
                     </div>
                 </Link>
 
-                {  loggedIn && <Link onClick={toggleUploadVisibility}>
+                <Link onClick={reload} to="/FilteredContent#aanbod">
+                    <div className="grid-item-folder">
+                        <div className="item-header">
+                            <div className="item-header-left">
+                                <h3>Aanbod</h3>
+                            </div>
+                            <div className="item-header-right">
+                                <a><img className={"item-icon"}
+                                        src="https://cdn.pixabay.com/photo/2016/09/28/02/14/cardboard-1699630__340.png"/></a>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+                <Link onClick={reload} to="/FilteredContent#bedrijfsuitje">
+                    <div className="grid-item-folder">
+                        <div className="item-header">
+                            <div className="item-header-left">
+                                <h3>Bedrijfsuitje</h3>
+                            </div>
+                            <div className="item-header-right">
+                                <a><img className={"item-icon"}
+                                        src="https://cdn.pixabay.com/photo/2016/09/28/02/14/cardboard-1699630__340.png"/></a>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+
+                <Link onClick={reload} to="/FilteredContent#escapeRoom">
+                    <div className="grid-item-folder">
+                        <div className="item-header">
+                            <div className="item-header-left">
+                                <h3>EscapeRoom</h3>
+                            </div>
+                            <div className="item-header-right">
+                                <a><img className={"item-icon"}
+                                        src="https://cdn.pixabay.com/photo/2016/09/28/02/14/cardboard-1699630__340.png"/></a>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+
+                <Link onClick={reload} to="/FilteredContent#experience">
+                    <div className="grid-item-folder">
+                        <div className="item-header">
+                            <div className="item-header-left">
+                                <h3>Experience</h3>
+                            </div>
+                            <div className="item-header-right">
+                                <a><img className={"item-icon"}
+                                        src="https://cdn.pixabay.com/photo/2016/09/28/02/14/cardboard-1699630__340.png"/></a>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+                <Link onClick={reload} to="/FilteredContent#kinderfeestje">
+                    <div className="grid-item-folder">
+                        <div className="item-header">
+                            <div className="item-header-left">
+                                <h3>Kinderfeestje</h3>
+                            </div>
+                            <div className="item-header-right">
+                                <a><img className={"item-icon"}
+                                        src="https://cdn.pixabay.com/photo/2016/09/28/02/14/cardboard-1699630__340.png"/></a>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+
+                {loggedIn && <Link onClick={toggleUploadVisibility}>
                     <div className="grid-item-folder">
                         <div className="item-header">
                             <div className="item-header-left">

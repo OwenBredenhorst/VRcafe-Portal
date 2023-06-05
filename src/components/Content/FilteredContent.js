@@ -10,6 +10,7 @@ import isLoggedIn from "../../functions/Session";
 import toast, {Toaster} from "react-hot-toast";
 import {Link} from "react-router-dom";
 import Filter from "../../containers/Filter/Filter";
+import FilterDropDown from "../../containers/Filter/FilterDropDown";
 
 let items = [];
 
@@ -114,38 +115,68 @@ const Content = () => {
                 const promisesImages = resImages.items
                     .map((itemRef) => {
 
-                        // Temp img if file is not common
-                        let thumbnailRef = ref(storage, `temp/error.png`);
+                        let thumbnailRef;
+                        const commonHashes = [
+                            "image",
+                            "logo",
+                            "banner",
+                            "icon",
+                            "giftcard",
+                            "vormgeving",
+                            "picelpictogram",
+                            "logo",
+                            "design",
+                            "isomerty",
+                            "picelpictogram",
+                            "illustraties",
+                            "bedrijfsuitje",
+                            "escapeRoom",
+                            "experience",
+                            "kinderfeestje",
+                            "lasergamen",
+                            "oplocatie",
+                            "racen",
+                            "home",
+                            "herfst",
+                            "kerst",
+                            "lente",
+                            "sinterklaas",
+                            "valtentijnsdag",
+                            "supersmash",
+                            "headset",
+                            "consumptie",
+                            "giftcard",
+                            "airhocky",
+                            "arcade",
+                            "vrcafe",
+                            "personeel"
+                        ];
 
-                        if (hash === "image" || hash === "logo" || hash === "banner" || hash === "icon" || hash === "giftcard" || hash === "vormgeving"
-                        || hash === "picelpictogram" || hash === "illustraties" || hash === "headset" || hash === "vrcafe" || hash === "airhocky" || hash === "arcade"){
-                             thumbnailRef = ref(storage, hash +`/thumbnails/${itemRef.name}`);
+
+                        if (commonHashes.includes(hash)) {
+                            thumbnailRef = ref(storage, `${hash}/thumbnails/${itemRef.name}`);
+                        } else if (hash === "document") {
+                            thumbnailRef = ref(storage, "temp/pdf-2127829_960_720.png");
+                        } else if (hash === "video") {
+                            thumbnailRef = ref(storage, "temp/videoTemp.png");
+                        } else {
+                            thumbnailRef = ref(storage, "temp/error.png");
                         }
-
-                        if (hash === "document"){
-                            thumbnailRef = ref(storage, `temp/pdf-2127829_960_720.png`);
-                        }
-
-                        if (hash === "video"){
-
-                            thumbnailRef = ref(storage, `temp/videoTemp.png`);
-                        }
-
 
                         return Promise.all([getDownloadURL(itemRef), getDownloadURL(thumbnailRef)])
                             .then(([url, thumbnailUrl]) => {
                                 const newItem = {
                                     id: itemRef.name,
-                                    type: 'image',
+                                    type: "image",
                                     title: itemRef.name,
                                     preview: url,
                                     thumbnail: thumbnailUrl,
-                                    icon: 'p',
-                                    folder: '' + hash,
+                                    icon: "p",
+                                    folder: `${hash}`,
                                 };
                                 return newItem;
-
                             });
+
                     });
 
 
@@ -183,7 +214,7 @@ const Content = () => {
                 </div>
             ) : (
                 <div className='App'>
-                    <Filter />
+                    <FilterDropDown />
                     <Grid items={items}/>
                 </div>
             )}
