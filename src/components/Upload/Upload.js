@@ -24,152 +24,152 @@ const Upload = () => {
 
 
     const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
+        setFile(Array.from(event.target.files));
     };
 
 
     const handleUpload = async () => {
 
-
-        switch (file.type) {
-            case "image/png":
-            case "image/jpg":
-            case "image/webp":
-            case "image/jpeg":
-                type = "image";
-                break;
-            case "application/pdf":
-                type = "document";
-                break;
-            case "video/mp4":
-                type = "video";
-                break;
-            default:
-                toast.error("Unrecognized file type: " + file.type);
-                return;
-        }
-
-
-        const imagesRef = ref(storageRef, selectedOption);
-        const fileRef = ref(imagesRef, file.name);
-        if (!file) return;
-        setUploading(true);
-
-
-        if (type === "image") {
-
-            // const blob = await new Promise((resolve) => {
-            //     ImageResizer.imageFileResizer(
-            //         file,
-            //         200,
-            //         200,
-            //         'png',
-            //         30,
-            //         0,
-            //         (dataUrl) => {
-            //             const byteString = atob(dataUrl.split(',')[1]);
-            //             const ab = new ArrayBuffer(byteString.length);
-            //             const ia = new Uint8Array(ab);
-            //             for (let i = 0; i < byteString.length; i++) {
-            //                 ia[i] = byteString.charCodeAt(i);
-            //             }
-            //             const blob = new Blob([ab], { type: 'image/png' });
-            //             resolve(blob);
-            //         },
-            //         'base64'
-            //     );
-            // });
-
-
-            if (file) {
-                setUploading(true);
-
-                const image = new Image();
-                image.src = URL.createObjectURL(file);
-
-                image.onload = async () => {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    canvas.width = 200;
-                    canvas.height = 200;
-
-                    ctx.drawImage(image, 0, 0, 200, 200);
-
-                    const dataUrl = canvas.toDataURL('image/jpeg', 0.3);
-
-                    // Convert data URL to Blob
-                    const response = await fetch(dataUrl);
-                    const blob = await response.blob();
-
-                    setCompressedImage(blob);
-                    uploadToFirebase(blob);
-                    setUploading(false);
-                };
+        for (const file1 of file) {
+            switch (file1.type) {
+                case "image/png":
+                case "image/jpg":
+                case "image/webp":
+                case "image/jpeg":
+                    type = "image";
+                    break;
+                case "application/pdf":
+                    type = "document";
+                    break;
+                case "video/mp4":
+                    type = "video";
+                    break;
+                default:
+                    toast.error("Unrecognized file type: " + file1.type);
+                    continue;
             }
 
-            const uploadToFirebase = (imageBlob) => {
-                // Upload the Blob to Firebase Storage
-                const thumbnailRef = ref(imagesRef, 'thumbnails/' + file.name);
-                console.log(thumbnailRef)
-                uploadBytes(thumbnailRef, imageBlob)
-                    .then((snapshot) => {
-                        toast.success('Low resolution uploaded: ' + file.name, {
-                            style: {
-                                border: '1px solid #713200',
-                                padding: '16px',
-                                backgroundColor: '#2D2A2F',
-                                color: 'white',
-                            },
-                            iconTheme: {
-                                primary: '#FD3E81',
-                                secondary: 'white',
-                            },
+
+            const imagesRef = ref(storageRef, selectedOption);
+            const fileRef = ref(imagesRef, file1.name);
+            if (!file1) continue;
+            setUploading(true);
+
+
+            if (type === "image") {
+
+                // const blob = await new Promise((resolve) => {
+                //     ImageResizer.imageFileResizer(
+                //         file,
+                //         200,
+                //         200,
+                //         'png',
+                //         30,
+                //         0,
+                //         (dataUrl) => {
+                //             const byteString = atob(dataUrl.split(',')[1]);
+                //             const ab = new ArrayBuffer(byteString.length);
+                //             const ia = new Uint8Array(ab);
+                //             for (let i = 0; i < byteString.length; i++) {
+                //                 ia[i] = byteString.charCodeAt(i);
+                //             }
+                //             const blob = new Blob([ab], { type: 'image/png' });
+                //             resolve(blob);
+                //         },
+                //         'base64'
+                //     );
+                // });
+
+
+                if (file1) {
+                    setUploading(true);
+
+                    const image = new Image();
+                    image.src = URL.createObjectURL(file1);
+
+                    image.onload = async () => {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        canvas.width = 720;
+                        canvas.height = 404;
+
+                        ctx.drawImage(image, 0, 0, 720, 404);
+
+                        const dataUrl = canvas.toDataURL('image/jpeg', 0.3);
+
+                        // Convert data URL to Blob
+                        const response = await fetch(dataUrl);
+                        const blob = await response.blob();
+
+                        setCompressedImage(blob);
+                        uploadToFirebase(blob);
+                        setUploading(false);
+                    };
+                }
+
+                const uploadToFirebase = (imageBlob) => {
+                    // Upload the Blob to Firebase Storage
+                    const thumbnailRef = ref(imagesRef, 'thumbnails/' + file1.name);
+                    console.log(thumbnailRef)
+                    uploadBytes(thumbnailRef, imageBlob)
+                        .then((snapshot) => {
+                            toast.success('Low resolution uploaded: ' + file1.name, {
+                                style: {
+                                    border: '1px solid #713200',
+                                    padding: '16px',
+                                    backgroundColor: '#2D2A2F',
+                                    color: 'white',
+                                },
+                                iconTheme: {
+                                    primary: '#FD3E81',
+                                    secondary: 'white',
+                                },
+                            });
+
+                            setTimeout(() => {
+                                // window.location.reload();
+                            }, 1000);
+                            setUploading(false);
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                            toast.error(error);
+                            setUploading(false);
                         });
 
-                        setTimeout(() => {
-                            // window.location.reload();
-                        }, 1000);
-                        setUploading(false);
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                        toast.error(error);
-                        setUploading(false);
-                    });
+                }
 
             }
 
-        }
+
+            uploadBytes(fileRef, file1)
+                .then((snapshot) => {
+                    toast.success('File Uploaded: ' + file1.name, {
+                        style: {
+                            border: '1px solid #713200',
+                            padding: '16px',
+                            backgroundColor: '#2D2A2F',
+                            color: 'white',
+                        },
+                        iconTheme: {
+                            primary: '#FD3E81',
+                            secondary: 'white',
+                        },
+                    });
+
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
 
 
-
-        uploadBytes(fileRef, file)
-            .then((snapshot) => {
-                toast.success('File Uploaded: ' + file.name, {
-                    style: {
-                        border: '1px solid #713200',
-                        padding: '16px',
-                        backgroundColor: '#2D2A2F',
-                        color: 'white',
-                    },
-                    iconTheme: {
-                        primary: '#FD3E81',
-                        secondary: 'white',
-                    },
+                    setUploading(false);
+                })
+                .catch((error) => {
+                    toast.error(error);
+                    console.error(error);
+                    setUploading(false);
                 });
-
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
-
-
-                setUploading(false);
-            })
-            .catch((error) => {
-                toast.error(error);
-                console.error(error);
-                setUploading(false);
-            });
+        }
     };
 
 
@@ -206,7 +206,7 @@ const Upload = () => {
                 <div className="upload-form">
                     <label htmlFor="file" className="file-label">
                         <span>Select File</span>
-                        <input type="file" name="file" id="file" onChange={handleFileChange} className="input-file" />
+                        <input type="file" name="file" id="file" onChange={handleFileChange} className="input-file" multiple />
                     </label>
                     <button className="upload-new" onClick={handleUpload} disabled={!file || uploading}>
                         {uploading ? 'Uploading...' : 'Upload'}
