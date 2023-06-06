@@ -22,7 +22,7 @@ function Navbar() {
                     <Link to="/welcome">
                         {loggedIn &&  <li className="navbar-item">Home</li>}
                     </Link>
-                    <Link to="/Content">
+                    <Link to="/FilteredContent#isomerty">
                         <li className="navbar-item">Files</li>
                     </Link>
                     <li onClick={sessionClear} className="navbar-item">Logout</li>

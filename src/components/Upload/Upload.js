@@ -58,27 +58,7 @@ const Upload = () => {
 
             if (type === "image") {
 
-                // const blob = await new Promise((resolve) => {
-                //     ImageResizer.imageFileResizer(
-                //         file,
-                //         200,
-                //         200,
-                //         'png',
-                //         30,
-                //         0,
-                //         (dataUrl) => {
-                //             const byteString = atob(dataUrl.split(',')[1]);
-                //             const ab = new ArrayBuffer(byteString.length);
-                //             const ia = new Uint8Array(ab);
-                //             for (let i = 0; i < byteString.length; i++) {
-                //                 ia[i] = byteString.charCodeAt(i);
-                //             }
-                //             const blob = new Blob([ab], { type: 'image/png' });
-                //             resolve(blob);
-                //         },
-                //         'base64'
-                //     );
-                // });
+
 
 
                 if (file1) {
@@ -113,22 +93,6 @@ const Upload = () => {
                     console.log(thumbnailRef)
                     uploadBytes(thumbnailRef, imageBlob)
                         .then((snapshot) => {
-                            toast.success('Low resolution uploaded: ' + file1.name, {
-                                style: {
-                                    border: '1px solid #713200',
-                                    padding: '16px',
-                                    backgroundColor: '#2D2A2F',
-                                    color: 'white',
-                                },
-                                iconTheme: {
-                                    primary: '#FD3E81',
-                                    secondary: 'white',
-                                },
-                            });
-
-                            setTimeout(() => {
-                                // window.location.reload();
-                            }, 1000);
                             setUploading(false);
                         })
                         .catch((error) => {
@@ -144,23 +108,6 @@ const Upload = () => {
 
             uploadBytes(fileRef, file1)
                 .then((snapshot) => {
-                    toast.success('File Uploaded: ' + file1.name, {
-                        style: {
-                            border: '1px solid #713200',
-                            padding: '16px',
-                            backgroundColor: '#2D2A2F',
-                            color: 'white',
-                        },
-                        iconTheme: {
-                            primary: '#FD3E81',
-                            secondary: 'white',
-                        },
-                    });
-
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1000);
-
 
                     setUploading(false);
                 })
@@ -169,7 +116,26 @@ const Upload = () => {
                     console.error(error);
                     setUploading(false);
                 });
+
+            toast.success('Successfully uploaded all files ', {
+                style: {
+                    border: '1px solid #713200',
+                    padding: '16px',
+                    backgroundColor: '#2D2A2F',
+                    color: 'white',
+                },
+                iconTheme: {
+                    primary: '#FD3E81',
+                    secondary: 'white',
+                },
+            });
+
         }
+
+
+
+
+        console.log("Done uploading")
     };
 
 
@@ -244,6 +210,8 @@ const Upload = () => {
                             <option value="lente">lente</option>
                             <option value="sinterklaas">sinterklaas</option>
                             <option value="valtentijnsdag">valtentijnsdag</option>
+                            <option value="personeel">Personeel</option>
+                            <option value="supersmash">Supersmash</option>
                         </select>
                     </div>
                 </div>
