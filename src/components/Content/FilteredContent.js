@@ -46,10 +46,9 @@ const GridItem = ({item}) => {
     };
 
 
-
-
     return (
         <div className="grid-item">
+
             <div className="item-header">
                 <div className="item-header-left">
                     <h3>{item.title}</h3>
@@ -175,7 +174,7 @@ const Content = () => {
                                     thumbnailRef = ref(storage, "temp/error.png");
                                 }
                             } catch (error) {
-                             console.log(error);
+                                console.log(error);
                             }
                         }
 
@@ -209,15 +208,17 @@ const Content = () => {
     }
 
 
-
     return (
         <div>
 
             <Toaster/>
             <Navbar/>
+
+
             <div className="upload-container upload-visible">
                 {loggedIn && isUploadVisible && <Upload/>}
             </div>
+
 
             {isLoading ? (
                 <div className='loading-animation'>
@@ -231,11 +232,16 @@ const Content = () => {
                 </div>
             ) : (
                 <div className='App'>
-                    <FilterDropDown />
+                    <div className="left-side-menu">
+                        <FilterDropDown/>
+                    </div>
+                    <div className="right-side-menu">
                     <Grid items={items}/>
+                </div>
                 </div>
             )}
         </div>
+
     );
 };
 

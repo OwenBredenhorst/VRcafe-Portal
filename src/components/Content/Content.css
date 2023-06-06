@@ -41,7 +41,12 @@
 
 .item-header-left{
     width: 90%;
+    overflow: hidden;
+}
 
+.item-header-left h3{
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .item-header-right{
@@ -94,9 +99,6 @@
     transform: translateY(0);
 }
 
-
-
-
 .navbar-item-filter{
 
     color: white;
@@ -124,6 +126,41 @@
 .upload-indicator-container{
     float: left;
     margin-left: 20px;
+}
+
+.left-side-menu {
+    height: 100%;
+    width: 20%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+
+}
+
+.left-side-menu h3 {
+
+    width: 200px;
+    /**Major Properties**/
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.grid-container {
+    flex: 1;
+    /*overflow: auto;*/
+
+    /**Major Properties**/
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.right-side-menu{
+    height: 100%;
+    width: 80%;
+    float: left;
 }
 
 @media only screen and (max-width: 768px) {
