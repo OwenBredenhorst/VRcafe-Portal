@@ -11,7 +11,7 @@ import toast, {Toaster} from "react-hot-toast";
 import {Link} from "react-router-dom";
 import Filter from "../../containers/Filter/Filter";
 import FilterDropDown from "../../containers/Filter/FilterDropDown";
-
+import { saveAs } from 'file-saver';
 let items = [];
 
 const hash = window.location.hash.substr(1);
@@ -22,6 +22,32 @@ const GridItem = ({item}) => {
     const isImage = item.type === 'image';
     const isVideo = item.type === 'video';
     const isDocument = item.type === 'document';
+
+    const corsProxyURL = 'https://cors-anywhere.herokuapp.com/';
+
+    const handleClickDownload = async () => {
+        // const storage = getStorage();
+        // const desertRef = ref(storage, `${hash}/${item.title}`);
+        //
+        // try {
+        //     // Get the download URL for the file
+        //     const downloadURL = await getDownloadURL(desertRef);
+        //
+        //     // Use FirebaseUI and Glide to download and display the image
+        //     val imageView = findViewById<ImageView>(R.id.imageView)
+        //     GlideApp.with(this /* context */)
+        //         .load(downloadURL)
+        //         .into(imageView)
+        //
+        //     toast.success("Image downloaded and displayed");
+        // } catch (error) {
+        //     toast.error("Error downloading image: " + error.message);
+        // }
+    };
+
+
+
+
 
 
     /**
@@ -54,9 +80,13 @@ const GridItem = ({item}) => {
                     <h3>{item.title}</h3>
                 </div>
                 <div className="item-header-right">
-                    {loggedIn && <a onClick={handleClick}><img className={"item-icon"}
+                    {loggedIn && <a  target="_blank" onClick={handleClick}><img className={"item-icon"}
                                                                src="https://cdn-icons-png.flaticon.com/512/656/656857.png"/></a>}
                 </div>
+                {/*<div className="item-header-right">*/}
+                {/*    {loggedIn && <a  target="_blank" onClick={handleClickDownload}><img className={"item-icon"}*/}
+                {/*                                                                src="https://static.thenounproject.com/png/1000688-200.png"/></a>}*/}
+                {/*</div>*/}
             </div>
             <div className="item-preview">
                 {isImage && (

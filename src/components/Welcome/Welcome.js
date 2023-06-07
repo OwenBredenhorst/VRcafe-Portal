@@ -43,7 +43,7 @@ const cardsData = [
 const Card = ({ id, title, image, link }) => {
     return (
         <div className="four-cards-card">
-            <Link to={link}>
+            <Link target="_blank" to={link}>
                 <img src={image} alt={`Image ${id}`} />
                 <h2>{title}</h2>
             </Link>

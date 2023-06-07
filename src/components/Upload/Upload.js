@@ -22,7 +22,6 @@ const Upload = () => {
     const storageRef = ref(storage);
 
 
-
     const handleFileChange = (event) => {
         setFile(Array.from(event.target.files));
     };
@@ -57,7 +56,6 @@ const Upload = () => {
 
 
             if (type === "image") {
-
 
 
                 // test
@@ -133,8 +131,6 @@ const Upload = () => {
         }
 
 
-
-
         console.log("Done uploading")
     };
 
@@ -171,49 +167,53 @@ const Upload = () => {
             <div className="upload-container">
                 <div className="upload-form">
                     <label htmlFor="file" className="file-label">
-                        <span>Select File</span>
-                        <input type="file" name="file" id="file" onChange={handleFileChange} className="input-file" multiple />
+                        <span>Select File: {file && file[0].name}</span>
+                        <input type="file" name="file" id="file" onChange={handleFileChange} className="input-file"
+                               multiple/>
                     </label>
+
+                    <div className="upload-form-dropdown">
+
+                        <div className="dropdown">
+                            <select value={selectedOption} onChange={handleChange} name="content-type">
+                                <option value="logo">Logo</option>
+                                <option value="giftcard">Giftcard</option>
+                                <option value="video">Video</option>
+                                <option value="vormgeving">Vormgeving</option>
+                                <option value="document">Document</option>
+                                <option value="icon">Icon</option>
+                                <option value="picelpictogram">Picelpictogram</option>
+                                <option value="illustraties">Illustraties</option>
+                                <option value="headset">Headset</option>
+                                <option value="vrcafe">VRcafe</option>
+                                <option value="arcade">Arcade</option>
+                                <option value="airhocky">Airhocky</option>
+                                <option value="aanbod">Aanbod</option>
+                                <option value="bedrijfsuitje">Bedrijfsuitje</option>
+                                <option value="escapeRoom">EscapeRoom</option>
+                                <option value="experience">Experience</option>
+                                <option value="kinderfeestje">Kinderfeestje</option>
+                                <option value="consumptie">Consumptie</option>
+                                <option value="design">Design</option>
+                                <option value="isomerty">Isomerty</option>
+                                <option value="lasergamen">Lasergamen</option>
+                                <option value="oplocatie">Op Locatie</option>
+                                <option value="racen">Racen</option>
+                                <option value="home">Home</option>
+                                <option value="herfst">Herfst</option>
+                                <option value="kerst">kerst</option>
+                                <option value="lente">lente</option>
+                                <option value="sinterklaas">sinterklaas</option>
+                                <option value="valtentijnsdag">valtentijnsdag</option>
+                                <option value="personeel">Personeel</option>
+                                <option value="supersmash">Supersmash</option>
+                            </select>
+                        </div>
+                    </div>
                     <button className="upload-new" onClick={handleUpload} disabled={!file || uploading}>
                         {uploading ? 'Uploading...' : 'Upload'}
                     </button>
 
-
-                    <div className="dropdown">
-                        <select value={selectedOption} onChange={handleChange} name="content-type">
-                            <option value="logo">Logo</option>
-                            <option value="giftcard">Giftcard</option>
-                            <option value="video">Video</option>
-                            <option value="vormgeving">Vormgeving</option>
-                            <option value="document">Document</option>
-                            <option value="icon">Icon</option>
-                            <option value="picelpictogram">Picelpictogram</option>
-                            <option value="illustraties">Illustraties</option>
-                            <option value="headset">Headset</option>
-                            <option value="vrcafe">VRcafe</option>
-                            <option value="arcade">Arcade</option>
-                            <option value="airhocky">Airhocky</option>
-                            <option value="aanbod">Aanbod</option>
-                            <option value="bedrijfsuitje">Bedrijfsuitje</option>
-                            <option value="escapeRoom">EscapeRoom</option>
-                            <option value="experience">Experience</option>
-                            <option value="kinderfeestje">Kinderfeestje</option>
-                            <option value="consumptie">Consumptie</option>
-                            <option value="design">Design</option>
-                            <option value="isomerty">Isomerty</option>
-                            <option value="lasergamen">Lasergamen</option>
-                            <option value="oplocatie">Op Locatie</option>
-                            <option value="racen">Racen</option>
-                            <option value="home">Home</option>
-                            <option value="herfst">Herfst</option>
-                            <option value="kerst">kerst</option>
-                            <option value="lente">lente</option>
-                            <option value="sinterklaas">sinterklaas</option>
-                            <option value="valtentijnsdag">valtentijnsdag</option>
-                            <option value="personeel">Personeel</option>
-                            <option value="supersmash">Supersmash</option>
-                        </select>
-                    </div>
                 </div>
             </div>
 

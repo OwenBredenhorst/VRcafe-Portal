@@ -141,7 +141,7 @@
 
 .left-side-menu h3 {
 
-    width: 200px;
+
     /**Major Properties**/
     white-space:nowrap;
     overflow:hidden;
@@ -162,6 +162,33 @@
     width: 80%;
     float: left;
 }
+
+.item-header-left-upload{
+
+    text-align: center;
+}
+
+
+.item-header-upload {
+
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+    background-color: #343138;
+}
+
+.item-header-upload i {
+
+
+}
+
+.item-header-upload h3 {
+
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
 
 @media only screen and (max-width: 768px) {
     .upload-indicator {

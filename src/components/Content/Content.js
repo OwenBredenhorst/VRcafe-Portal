@@ -77,6 +77,7 @@ const GridItem = ({item}) => {
                             src="https://firebasestorage.googleapis.com/v0/b/vrcafeportal-1f687.appspot.com/o/temp%2Fpdf-2127829_960_720.png?alt=media&token=64de39ae-04f0-4bad-b596-683cd286bcdf"
                             alt={item.title}
                         />
+
                     </a>
                 )}
             </div>

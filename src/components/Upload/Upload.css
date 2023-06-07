@@ -5,7 +5,7 @@
 
 }
 .upload-form {
-    display: flex;
+
     align-items: flex-start;
     padding: 32px;
     background-color: #2D2D2D;
@@ -33,28 +33,35 @@
 }
 
 .file-label:hover {
-    background-color: #2E8B57;
+    background-color: rgb(123, 5, 180);
+
 }
 
 .file-label span {
     margin-right: 8px;
     font-weight: bold;
+
 }
 
 .submit-btn{
     float: left;
+
 }
 
 .upload-new{
     transform: skew(-0deg) !important;
     height: 3.61rem;
+    width: 100%;
 
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+    width: 100%;
 
+
+}
+.upload-form-dropdown select{
+    width: 100%;
 }
 
 .dropdown select {

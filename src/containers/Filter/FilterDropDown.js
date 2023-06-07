@@ -121,6 +121,18 @@ function FilterDropDown() {
             </div>
             <div className="grid-container">
 
+                {loggedIn && <Link onClick={toggleUploadVisibility}>
+                    <div className="grid-item-folder">
+                        <div className="item-header-upload">
+                            <div className="item-header-left-upload">
+                                <h3>Upload</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style={{textAlign: "center", color: "#484848"}}>____________________________</h3>
+                </Link>}
+
                 {folderItems.map((folderItem) => (
                     <div key={folderItem.id}>
                         <Link onClick={() => toggleMenu(folderItem.id)} to={folderItem.link}>
@@ -164,21 +176,10 @@ function FilterDropDown() {
                             </div>
                         )}
                     </div>
+
                 ))}
 
-                {loggedIn && <Link onClick={toggleUploadVisibility}>
-                    <div className="grid-item-folder">
-                        <div className="item-header">
-                            <div className="item-header-left">
-                                <h3>Upload</h3>
-                            </div>
-                            <div className="item-header-right">
-                                <a><img className={"item-icon"}
-                                        src="https://cdn.pixabay.com/photo/2016/09/28/02/14/cardboard-1699630__340.png"/></a>
-                            </div>
-                        </div>
-                    </div>
-                </Link>}
+                <h3 style={{textAlign: "center", color: "#484848"}}>____________________________</h3>
 
             </div>
         </>
