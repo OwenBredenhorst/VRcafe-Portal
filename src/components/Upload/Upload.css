@@ -5,10 +5,10 @@
 
 }
 .upload-form {
-
+width: 100%;
     align-items: flex-start;
     padding: 32px;
-    background-color: #2D2D2D;
+
 }
 
 .input-file {
@@ -72,8 +72,9 @@
 
     color: white;
     font-size: 20px;
-    margin-top: 0.5em;
+
     height: 100%;
+    margin-bottom: 2em;
 
 
 }

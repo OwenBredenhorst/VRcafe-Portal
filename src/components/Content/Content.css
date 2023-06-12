@@ -40,23 +40,25 @@
     background-color: #343138;
 }
 
-.item-header-left{
+.item-header-left {
     width: 90%;
     overflow: hidden;
 }
 
-.item-header-left h3{
+.item-header-left h3 {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.item-header-right{
+.item-header-right {
     width: 10%;
 
 }
-.item-header-right img{
- float: right;
+
+.item-header-right img {
+    float: right;
 }
+
 .item-header i {
     font-size: 20px;
     margin-right: 10px;
@@ -90,7 +92,7 @@
     display: none !important;
 }
 
-.item-icon{
+.item-icon {
     height: 20px;
 }
 
@@ -100,7 +102,7 @@
     transform: translateY(0);
 }
 
-.navbar-item-filter{
+.navbar-item-filter {
 
     color: white;
     text-decoration: none;
@@ -113,58 +115,46 @@
 
 }
 
-.navbar-item-filter:hover{
+.navbar-item-filter:hover {
     color: #00ef6f;
     font-weight: bold;
 
 }
 
-.navbar-item-filter-button{
-    margin-left:60px;
+.navbar-item-filter-button {
+    margin-left: 60px;
 
 }
 
-.upload-indicator-container{
+.upload-indicator-container {
     float: left;
     margin-left: 20px;
 }
 
 .left-side-menu {
     height: 100%;
-    width: 300px;
+    width: 20%;
     float: left;
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*overflow: hidden;*/
-
 
 }
 
 .left-side-menu h3 {
 
-
-    /**Major Properties**/
-    /*white-space:nowrap;*/
-    /*overflow:hidden;*/
-    /*text-overflow:ellipsis;*/
 }
+
 .grid-container {
     flex: 1;
-    /*overflow: auto;*/
 
-    /**Major Properties**/
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    text-overflow: ellipsis;
 }
 
-.right-side-menu{
+.right-side-menu {
     height: 100%;
     width: 80%;
     float: left;
 }
 
-.item-header-left-upload{
+.item-header-left-upload {
 
     text-align: center;
 }
@@ -190,12 +180,32 @@
     color: #ffffff;
 }
 
+@media only screen and (max-width: 1508px) {
+    .left-side-menu {
+
+        width: 100%;
+
+    }
+    .right-side-menu {
+        width: 100%;
+    }
+}
 
 @media only screen and (max-width: 768px) {
+    .left-side-menu {
+        width: 100%;
+
+    }
+
+    .right-side-menu {
+        width: 100%;
+    }
+
     .upload-indicator {
         text-align: center;
     }
-    .upload-indicator-container{
+
+    .upload-indicator-container {
         text-align: center;
         margin-top: 3.5em;
         float: none;

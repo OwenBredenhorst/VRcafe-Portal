@@ -16,7 +16,7 @@ const Upload = () => {
     const [file, setFile] = useState(null);
     const [filetest, setFiletest] = useState(null);
     const [uploading, setUploading] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('video');
+    const [selectedOption, setSelectedOption] = useState(null);
     const [compressedImage, setCompressedImage] = useState(null);
     const storage = getStorage();
     const storageRef = ref(storage);
