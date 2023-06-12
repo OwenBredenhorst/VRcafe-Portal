@@ -58,7 +58,7 @@ const Upload = () => {
             if (type === "image") {
 
 
-                // test
+
                 if (file1) {
                     setUploading(true);
 

@@ -156,12 +156,22 @@ body {
         width: 100%;
         text-align: center;
         margin-top: 20px;
+        overflow-x: scroll;
+        white-space: nowrap;
+        padding-right: 40px; /* Add some space on the right side */
+        scroll-snap-type: x mandatory; /* Snap horizontally to the nearest card */
+    }
+
+    .four-cards-container::-webkit-scrollbar {
+        display: none; /* Hide the scrollbar */
     }
 
     .four-cards-card {
         width: 90%;
         height: 30em;
         margin: 20px;
+        display: inline-block;
+        scroll-snap-align: start; /* Snap each card to the start */
     }
-
 }
+
