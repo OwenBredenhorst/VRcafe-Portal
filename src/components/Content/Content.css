@@ -25,6 +25,7 @@
     overflow: hidden;
     transition: transform 0.2s ease-in-out;
     height: 40px;
+    width: 100%;
 }
 
 .grid-item-folder:hover {
@@ -130,11 +131,11 @@
 
 .left-side-menu {
     height: 100%;
-    width: 20%;
+    width: 300px;
     float: left;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*overflow: hidden;*/
 
 
 }
@@ -143,9 +144,9 @@
 
 
     /**Major Properties**/
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    /*white-space:nowrap;*/
+    /*overflow:hidden;*/
+    /*text-overflow:ellipsis;*/
 }
 .grid-container {
     flex: 1;
