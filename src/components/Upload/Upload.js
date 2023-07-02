@@ -176,37 +176,40 @@ const Upload = () => {
 
                         <div className="dropdown">
                             <select value={selectedOption} onChange={handleChange} name="content-type">
-                                <option value="logo">Logo</option>
-                                <option value="giftcard">Giftcard</option>
-                                <option value="video">Video</option>
-                                <option value="vormgeving">Vormgeving</option>
-                                <option value="document">Document</option>
-                                <option value="icon">Icon</option>
-                                <option value="picelpictogram">Picelpictogram</option>
-                                <option value="illustraties">Illustraties</option>
-                                <option value="headset">Headset</option>
-                                <option value="vrcafe">VRcafe</option>
-                                <option value="arcade">Arcade</option>
-                                <option value="airhocky">Airhocky</option>
                                 <option value="aanbod">Aanbod</option>
+                                <option value="airhocky">Airhocky</option>
+                                <option value="arcade">Arcade</option>
                                 <option value="bedrijfsuitje">Bedrijfsuitje</option>
-                                <option value="escapeRoom">EscapeRoom</option>
-                                <option value="experience">Experience</option>
-                                <option value="kinderfeestje">Kinderfeestje</option>
                                 <option value="consumptie">Consumptie</option>
                                 <option value="design">Design</option>
-                                <option value="isomerty">Isomerty</option>
-                                <option value="lasergamen">Lasergamen</option>
-                                <option value="oplocatie">Op Locatie</option>
-                                <option value="racen">Racen</option>
-                                <option value="home">Home</option>
+                                <option value="document">Document</option>
+                                <option value="escapeRoom">EscapeRoom</option>
+                                <option value="experience">Experience</option>
+                                <option value="fotoshoot">fotoshoot</option>
+                                <option value="giftcard">Giftcard</option>
+                                <option value="headset">Headset</option>
                                 <option value="herfst">Herfst</option>
+                                <option value="home">Home</option>
+                                <option value="icon">Icon</option>
+                                <option value="illustraties">Illustraties</option>
+                                <option value="instagram">instagram</option>
+                                <option value="isomerty">Isomerty</option>
                                 <option value="kerst">kerst</option>
+                                <option value="kinderfeestje">Kinderfeestje</option>
+                                <option value="lasergamen">Lasergamen</option>
                                 <option value="lente">lente</option>
-                                <option value="sinterklaas">sinterklaas</option>
-                                <option value="valtentijnsdag">valtentijnsdag</option>
+                                <option value="logo">Logo</option>
+                                <option value="oplocatie">Op Locatie</option>
                                 <option value="personeel">Personeel</option>
-                                <option value="supersmash">Supersmash</option>
+                                <option value="picelpictogram">Picelpictogram</option>
+                                <option value="racen">Racen</option>
+                                <option value="sinterklaas">sinterklaas</option>
+                                <option value="temp">temp</option>
+                                <option value="tiktok">tiktok</option>
+                                <option value="twitter">twitter</option>
+                                <option value="valtentijnsdag">valtentijnsdag</option>
+                                <option value="video">Video</option>
+                                <option value="vormgeving">Vormgeving</option>
                             </select>
                         </div>
                     </div>

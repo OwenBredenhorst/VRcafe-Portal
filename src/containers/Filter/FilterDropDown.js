@@ -98,6 +98,19 @@ function FilterDropDown() {
                 {id: 5, title: 'Arcade   ', link: '/FilteredContent#arcade'},
                 {id: 6, title: 'VRcafe   ', link: '/FilteredContent#vrcafe'},
                 {id: 7, title: 'Personeel', link: '/FilteredContent#personeel'},
+                {id: 7, title: 'Fotoshoot 2023', link: '/FilteredContent#fotoshoot'},
+            ],
+        },
+        {
+            id: 7,
+            title: 'Social',
+            icon: 'https://cdn.pixabay.com/photo/2016/09/28/02/14/cardboard-1699630__340.png',
+            link: '',
+            menuItems: [
+                {id: 1, title: 'Instagram ', link: '/FilteredContent#instagram'},
+                {id: 2, title: 'Twitter ', link: '/FilteredContent#twitter'},
+                {id: 4, title: 'Tiktok ', link: '/FilteredContent#tiktok'},
+                {id: 5, title: 'Temp ', link: '/FilteredContent#temp'},
             ],
         },
 

@@ -208,7 +208,7 @@ const Login = () => {
 
                     <Link to="/welcomeBedrijf">
                     <p className={"login-p"}>
-                        Login Werknemer
+                        Login zonder account
                     </p>
                     </Link>
             </div>

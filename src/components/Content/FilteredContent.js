@@ -178,7 +178,13 @@ const Content = () => {
                             "airhocky",
                             "arcade",
                             "vrcafe",
-                            "personeel"
+                            "instagram",
+                            "twitter",
+                            "tiktok",
+                            "personeel",
+                            "temp",
+                            "fotoshoot",
+
                         ];
 
                         const allowedExtensions = ['.mp4', '.avi', '.mov', '.wmv'];

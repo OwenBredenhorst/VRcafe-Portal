@@ -11,7 +11,7 @@ const cardsData = [
         id: 1,
         title: 'Files',
         image: 'https://firebasestorage.googleapis.com/v0/b/vrcafeportal-1f687.appspot.com/o/temp%2Fback.png?alt=media&token=e19c480b-3c7f-4b6c-ba14-fb97ac955bb1',
-        link: '/Content'
+        link: '/FilteredContent#isomerty'
     },
     {
         id: 2,
