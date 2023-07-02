@@ -8,6 +8,7 @@ import Upload from "./components/Upload/Upload";
 import FilteredContent from "./components/Content/FilteredContent";
 import Filter from "./containers/Filter/Filter";
 import FilterDropDown from "./containers/Filter/FilterDropDown";
+import Information from "./components/Information/Information";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/FilteredContent" element={<FilteredContent />} />
           <Route path="/Filter" element={<Filter />} />
           <Route path="/FilterDropDown" element={<FilterDropDown />} />
+          <Route path="/Information" element={<Information />} />
         </Routes>
       </BrowserRouter>
   );

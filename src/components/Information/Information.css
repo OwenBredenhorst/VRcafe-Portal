@@ -1,0 +1,66 @@
+.help-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #1c1c1c;
+    color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 2em ;
+}
+
+.help-page__title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.help-page__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.help-page__image {
+    margin-right: 0;
+    flex: 0 0 300px;
+    margin-bottom: 20px;
+
+}
+
+.help-page__image img {
+    max-width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.help-page__description {
+    flex: 1;
+}
+
+.help-page__step {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.help-page__text {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .help-page__content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .help-page__image {
+        margin-right: 0;
+    }
+}

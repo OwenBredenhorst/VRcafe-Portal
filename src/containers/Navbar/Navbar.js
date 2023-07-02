@@ -25,6 +25,9 @@ function Navbar() {
                     <Link to="/FilteredContent#isomerty">
                         <li className="navbar-item">Files</li>
                     </Link>
+                    <Link to="/Information">
+                        <li className="navbar-item">Info</li>
+                    </Link>
                     <li onClick={sessionClear} className="navbar-item">Logout</li>
                 </ul>
             </div>
