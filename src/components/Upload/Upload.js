@@ -210,6 +210,7 @@ const Upload = () => {
                                 <option value="valtentijnsdag">valtentijnsdag</option>
                                 <option value="video">Video</option>
                                 <option value="vormgeving">Vormgeving</option>
+                                <option value="supersmash">supersmash</option>
                             </select>
                         </div>
                     </div>
